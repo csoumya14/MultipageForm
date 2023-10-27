@@ -29,7 +29,7 @@ export const StepsLayout: FC<StepsLayoutProps> = ({
     <Article>
       <NavBar />
       <Wrapper>{children}</Wrapper>
-      <NavigationButtons back={back} home next={next} />
+      <NavigationButtons back={back} home={home} next={next} />
     </Article>
   );
 };

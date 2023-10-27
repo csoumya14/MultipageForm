@@ -42,8 +42,5 @@ declare module "styled-components" {
     lineHeight: {
       bodyLargeScreen: number;
     };
-    width: {
-      navBarWidth: number;
-    };
   }
 }

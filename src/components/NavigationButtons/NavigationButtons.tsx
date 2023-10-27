@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { FC } from "react";
 import { Wrapper } from "./NavigationButtons.style";
+import { Button } from "../Button/Button";
 
 type NavigationButtonsProps = {
   back: string;
@@ -18,7 +19,7 @@ export const NavigationButtons: FC<NavigationButtonsProps> = ({
   return (
     <Wrapper>
       <Link href={back}>
-        <button>Back</button>
+        <Button type="button">Back</Button>
       </Link>
       <Link href={next}>
         <button disabled={!stepIsValidated}>

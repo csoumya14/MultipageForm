@@ -40,9 +40,6 @@ const theme: DefaultTheme = {
   lineHeight: {
     bodyLargeScreen: 25,
   },
-  width: {
-    navBarWidth: 574.406,
-  },
 };
 
 export { theme };
