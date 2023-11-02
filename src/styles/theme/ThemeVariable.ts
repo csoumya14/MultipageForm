@@ -4,6 +4,7 @@ const theme: DefaultTheme = {
   palette: {
     primary: {
       lightBlue: "hsl(227.9,100%,83.5%)",
+      borderColor: "hsl(64%,24%,84%)",
       grey: "hsl(231,10.5%,62.7%)",
       background: "hsl(217.5,100%,96.9%)",
       denim: "hsl(213.1,95.6%,17.8%)",

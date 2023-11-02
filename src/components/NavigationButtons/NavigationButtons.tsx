@@ -1,6 +1,10 @@
 import Link from "next/link";
 import { FC } from "react";
-import { Wrapper } from "./NavigationButtons.style";
+import {
+  NextButtonLink,
+  StyledButton,
+  Wrapper,
+} from "./NavigationButtons.style";
 import { Button } from "../Button/Button";
 
 type NavigationButtonsProps = {
@@ -18,14 +22,16 @@ export const NavigationButtons: FC<NavigationButtonsProps> = ({
 }) => {
   return (
     <Wrapper>
-      <Link href={back}>
-        <Button type="button">Back</Button>
-      </Link>
-      <Link href={next}>
-        <button disabled={!stepIsValidated}>
-          {home ? "Go Back" : "Next Step"}
-        </button>
-      </Link>
+      {!home && (
+        <Link href={back}>
+          <Button type="button"> Go Back</Button>
+        </Link>
+      )}
+      <NextButtonLink href={next}>
+        <StyledButton type="button" disabled={!stepIsValidated}>
+          Next Step
+        </StyledButton>
+      </NextButtonLink>
     </Wrapper>
   );
 };

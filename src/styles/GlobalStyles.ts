@@ -10,7 +10,11 @@ const styles = css`
   body {
     max-width: 100vw;
     overflow-x: hidden;
-    border: 1px solid red;
+  }
+
+  button,
+  input {
+    font-family: inherit;
   }
 `;
 

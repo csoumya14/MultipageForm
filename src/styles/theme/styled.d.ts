@@ -6,6 +6,7 @@ declare module "styled-components" {
     palette: {
       primary: {
         lightBlue: string;
+        borderColor: string;
         grey: string;
         background: string;
         denim: string;
