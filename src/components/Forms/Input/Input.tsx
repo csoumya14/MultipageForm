@@ -9,6 +9,7 @@ export type InputProps = {
   id: string;
   name: string;
   type?: string;
+  checked?: boolean;
   className?: string;
   placeholder?: string;
 };

@@ -15,9 +15,9 @@ interface NavBarProps {}
 export const NavBar: FC<NavBarProps> = () => {
   const linkPageList = [
     { id: 1, href: "/", pageTitle: "Your Info" },
-    { id: 2, href: "/step-two", pageTitle: "Select Plan" },
-    { id: 3, href: "/step-three", pageTitle: "Add-ons" },
-    { id: 4, href: "/step-four", pageTitle: "summary" },
+    { id: 2, href: "/stepTwo", pageTitle: "Select Plan" },
+    { id: 3, href: "/stepThree", pageTitle: "Add-ons" },
+    { id: 4, href: "/stepFour", pageTitle: "summary" },
   ];
 
   return (

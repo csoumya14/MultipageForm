@@ -24,7 +24,7 @@ export default function Home() {
   };
   return (
     <Layout>
-      <StepsLayout back="/" next="/step-two" home>
+      <StepsLayout back="/" next="/stepTwo" home>
         <StepTitle title={StepTitleTypes.StepOne} />
         <StepInfo info={StepInfoTypes.StepOne} />
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -37,7 +37,6 @@ export default function Home() {
                 id="name"
               />
             </Field>
-
             <Field id="email" label="Email Address">
               <StyledInput
                 {...register("email")}

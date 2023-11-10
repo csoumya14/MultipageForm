@@ -24,7 +24,7 @@ export const NavigationButtons: FC<NavigationButtonsProps> = ({
     <Wrapper>
       {!home && (
         <Link href={back}>
-          <Button type="button"> Go Back</Button>
+          <StyledButton type="button"> Go Back</StyledButton>
         </Link>
       )}
       <NextButtonLink href={next}>
