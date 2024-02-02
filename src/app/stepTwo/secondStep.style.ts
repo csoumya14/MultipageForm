@@ -28,6 +28,26 @@ export const StyledOptionWrapper = styled.div`
   gap: 1rem;
 `;
 
+export const StyledOptionName = styled.span`
+  font-weight: 700;
+  color: ${(props) => props.theme.palette.primary.denim};
+`;
+export const StyledFreeMessage = styled.span`
+  height: 1rem;
+  color: ${(props) => props.theme.palette.primary.denim};
+`;
+
+export const StyledOptionPrice = styled.span`
+  color: ${(props) => props.theme.palette.primary.grey};
+`;
+
+export const StyledToggleSwitchWrapper = styled.div`
+  display: flex;
+  background-color: ${(props) => props.theme.palette.primary.veryLightGrey};
+  border-radius: 6px;
+  align-items: center;
+`;
+
 export const StyledLabel = styled.label`
   display: flex;
   flex-direction: column;

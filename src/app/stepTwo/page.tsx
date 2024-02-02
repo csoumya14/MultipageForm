@@ -8,19 +8,26 @@ import {
   StyledFieldset,
   StyledOptionWrapper,
   StyledLabel,
+  StyledToggleSwitchWrapper,
+  StyledOptionName,
+  StyledOptionPrice,
+  StyledFreeMessage,
 } from "./secondStep.style";
 import { StepTitle } from "@/components/StepTitle/StepTitle";
 import { StepInfo } from "@/components/StepInfo/StepInfo";
 import { useAppState } from "@/context";
-import { Field } from "@/components/Forms/Field/Field";
-import { SetStateAction } from "react";
+import { SetStateAction, useState } from "react";
 import { formInputDataTypes } from "@/types/formInputDataTypes";
 import { SvgArcade } from "@/components/SVGs/SvgArcade/SvgArcade";
 import { SvgAdvanced } from "@/components/SVGs/SvgAdvanced/SvgAdvanced";
 import { SvgPro } from "@/components/SVGs/SvgPro/SvgPro";
+import { ToggleSwitch } from "@/components/ToggleSwitch/ToggleSwitch";
+import { ToggleLabelTypes } from "@/enums/ToggleLabel";
 
 export default function Home() {
   const { setFormValues, data } = useAppState();
+  const [billingFrequency, setSelectedBillingFrequency] =
+    useState<string>("Yearly");
   const {
     handleSubmit,
     register,
@@ -30,7 +37,6 @@ export default function Home() {
   const onSubmit = (values: SetStateAction<formInputDataTypes>) => {
     setFormValues(values);
   };
-  const isMonthly = true;
   const planOptions = [
     {
       id: "1Arcade",
@@ -66,13 +72,27 @@ export default function Home() {
                 {option.icon}
                 <StyledLabel>
                   <StyledInput type="radio" id={option.id} name={option.name} />
-                  <span>{option.name}</span>
-                  <span>
-                    ${option.priceMonthly}/{isMonthly ? "mo" : "yr"}
-                  </span>
+                  <StyledOptionName>{option.name}</StyledOptionName>
+                  <StyledOptionPrice>
+                    {billingFrequency === ToggleLabelTypes.Monthly
+                      ? `$ ${option.priceMonthly}/ mo`
+                      : `$ ${option.priceYearly}/ yr`}
+                  </StyledOptionPrice>
+
+                  <StyledFreeMessage>
+                    {billingFrequency === ToggleLabelTypes.Yearly
+                      ? "2 months free"
+                      : ""}
+                  </StyledFreeMessage>
                 </StyledLabel>
               </StyledOptionWrapper>
             ))}
+            <StyledToggleSwitchWrapper>
+              <ToggleSwitch
+                billingFrequency={billingFrequency}
+                setSelectedBillingFrequency={setSelectedBillingFrequency}
+              />
+            </StyledToggleSwitchWrapper>
           </StyledFieldset>
         </form>
       </StepsLayout>

@@ -11,3 +11,4 @@ export enum StepInfoTypes {
   StepThree = "Add-ons help enhance your gaming experience.",
   StepFour = "Double-check everything looks OK before confirming.",
 }
+
