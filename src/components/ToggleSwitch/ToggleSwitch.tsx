@@ -6,16 +6,13 @@ import {
   RadioSwitchLabel,
   VisuallyHiddenLegend,
 } from "./ToggleSwitch.style";
+import { useAppState } from "@/context";
 
-interface ToggleSwitchProps {
-  billingFrequency: string;
-  setSelectedBillingFrequency: Dispatch<SetStateAction<string>>;
-}
+interface ToggleSwitchProps {}
 
-export const ToggleSwitch: FC<ToggleSwitchProps> = ({
-  billingFrequency,
-  setSelectedBillingFrequency,
-}) => {
+export const ToggleSwitch: FC<ToggleSwitchProps> = ({}) => {
+  const { billingFrequency, setSelectedBillingFrequency } = useAppState();
+
   const handleToggleChange = (value: string) => {
     setSelectedBillingFrequency(value);
   };

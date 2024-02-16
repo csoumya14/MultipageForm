@@ -3,58 +3,113 @@ import { Layout } from "@/components/Layout/Layout";
 import { StepsLayout } from "@/components/StepsLayout/StepsLayout";
 import { useForm } from "react-hook-form";
 import { StepInfoTypes, StepTitleTypes } from "@/enums/StepTitles";
-import { StyledInput, StyledFieldset } from "./stepOne.style";
+import {
+  StyledInput,
+  StyledFieldset,
+  StyledFormContainer,
+  StyledForm,
+  StyledLegend,
+} from "./stepOne.style";
 import { StepTitle } from "@/components/StepTitle/StepTitle";
-import { StepInfo } from "@/components/StepInfo/StepInfo";
 import { useAppState } from "@/context";
 import { Field } from "@/components/Forms/Field/Field";
-import { SetStateAction } from "react";
-import { formInputDataTypes } from "@/types/formInputDataTypes";
+import { PersonalInfoTypes } from "@/types/formInputDataTypes";
+import { NavigationButtons } from "@/components/NavigationButtons/NavigationButtons";
+import { useRouter } from "next/navigation";
+
+const PHONE_NO_REGEX = /^[0-9\- ]{8,14}$/;
+const EMAIL_REGEX =
+  /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
 export default function Home() {
-  const { setFormValues, data } = useAppState();
+  const { profile, setProfile } = useAppState();
+
   const {
-    handleSubmit,
     register,
-    watch,
-    formState: { errors },
-  } = useForm({ mode: "onChange" });
-  const onSubmit = (values: SetStateAction<formInputDataTypes>) => {
-    setFormValues(values);
+    getValues,
+    formState: { errors, isValid },
+  } = useForm<PersonalInfoTypes>({
+    mode: "onChange",
+  });
+
+  console.log("name", profile.firstName);
+  const router = useRouter();
+
+  const handleBackwardClick = () => {
+    router.back();
   };
+  const handleForwardClick = () => {
+    const values = getValues();
+    setProfile(values);
+    console.log("data: from profile form", values);
+    router.push("/stepTwo");
+  };
+
   return (
     <Layout>
-      <StepsLayout back="/" next="/stepTwo" home>
-        <StepTitle title={StepTitleTypes.StepOne} />
-        <StepInfo info={StepInfoTypes.StepOne} />
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <StyledFieldset>
-            <Field id="name" label="Name">
-              <StyledInput
-                {...register("name")}
-                type="text"
-                placeholder="e.g.Stephen King"
-                id="name"
-              />
-            </Field>
-            <Field id="email" label="Email Address">
-              <StyledInput
-                {...register("email")}
-                type="text"
-                placeholder="e.g.stephenking@lorem.com"
-                id="email"
-              />
-            </Field>
-            <Field id="phoneNumber" label="Phone Number">
-              <StyledInput
-                {...register("phoneNumber")}
-                type="text"
-                placeholder="e.g. +1234567890"
+      <StepsLayout>
+        {/* <StepInfo info={StepInfoTypes.StepOne} /> */}
+        <StyledForm>
+          <StyledFormContainer>
+            <StepTitle title={StepTitleTypes.StepOne} />
+            <StyledFieldset>
+              <StyledLegend>{StepInfoTypes.StepOne}</StyledLegend>
+              <Field id="name" label="Name" error={errors.firstName}>
+                <StyledInput
+                  {...register("firstName", {
+                    required: { value: true, message: "Name is required" },
+                    maxLength: {
+                      value: 20,
+                      message: "min length should be 20",
+                    },
+                  })}
+                  type="name"
+                  placeholder="e.g.Stephen King"
+                  id="name"
+                  defaultValue={profile.firstName}
+                />
+              </Field>
+              <Field id="email" label="Email Address" error={errors.email}>
+                <StyledInput
+                  {...register("email", {
+                    required: { value: true, message: "Email is required" },
+                    pattern: { value: EMAIL_REGEX, message: "incorrect email" },
+                  })}
+                  type="email"
+                  placeholder="e.g.stephenking@lorem.com"
+                  id="email"
+                  defaultValue={profile.email}
+                />
+              </Field>
+              <Field
                 id="phoneNumber"
-              />
-            </Field>
-          </StyledFieldset>
-        </form>
+                label="Phone Number"
+                error={errors.phoneNumber}
+              >
+                <StyledInput
+                  {...register("phoneNumber", {
+                    required: {
+                      value: true,
+                      message: "Phone number is required",
+                    },
+                  })}
+                  type="tel"
+                  placeholder="e.g. +1234567890"
+                  id="phoneNumber"
+                  defaultValue={profile.phoneNumber}
+                />
+              </Field>
+            </StyledFieldset>
+          </StyledFormContainer>
+          <NavigationButtons
+            back="/"
+            next="/stepTwo"
+            handleForwardClick={handleForwardClick}
+            handleBackwardClick={handleBackwardClick}
+            home
+            stepIsValidated={isValid}
+          />
+        </StyledForm>
       </StepsLayout>
     </Layout>
   );

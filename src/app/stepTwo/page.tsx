@@ -12,31 +12,51 @@ import {
   StyledOptionName,
   StyledOptionPrice,
   StyledFreeMessage,
+  StyledFormContainer,
+  StyledForm,
+  StyledLegend,
 } from "./secondStep.style";
 import { StepTitle } from "@/components/StepTitle/StepTitle";
 import { StepInfo } from "@/components/StepInfo/StepInfo";
 import { useAppState } from "@/context";
-import { SetStateAction, useState } from "react";
-import { formInputDataTypes } from "@/types/formInputDataTypes";
+import { IndividualPlanTypes } from "@/types/formInputDataTypes";
 import { SvgArcade } from "@/components/SVGs/SvgArcade/SvgArcade";
 import { SvgAdvanced } from "@/components/SVGs/SvgAdvanced/SvgAdvanced";
 import { SvgPro } from "@/components/SVGs/SvgPro/SvgPro";
 import { ToggleSwitch } from "@/components/ToggleSwitch/ToggleSwitch";
 import { ToggleLabelTypes } from "@/enums/ToggleLabel";
+import { NavigationButtons } from "@/components/NavigationButtons/NavigationButtons";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
-  const { setFormValues, data } = useAppState();
-  const [billingFrequency, setSelectedBillingFrequency] =
-    useState<string>("Yearly");
+  const { plan, billingFrequency, setSelectedBillingFrequency, setPlan } =
+    useAppState();
+
   const {
-    handleSubmit,
     register,
+    setValue,
+    getValues,
     watch,
-    formState: { errors },
-  } = useForm({ mode: "onChange" });
-  const onSubmit = (values: SetStateAction<formInputDataTypes>) => {
-    setFormValues(values);
+    formState: { errors, isValid },
+  } = useForm<IndividualPlanTypes>({ mode: "onChange" });
+  console.log("plan selected", plan);
+  const router = useRouter();
+  const handleBackwardClick = () => {
+    router.back();
   };
+  const handleForwardClick = () => {
+    const values = getValues();
+    setPlan(values);
+    router.push("/stepThree");
+  };
+
+  console.log("valid", isValid);
+  const watchPlan = watch("planName", "");
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setValue("planName", e.target.value);
+  };
+
   const planOptions = [
     {
       id: "1Arcade",
@@ -62,39 +82,60 @@ export default function Home() {
   ];
   return (
     <Layout>
-      <StepsLayout back="/" next="/stepThree">
-        <StepTitle title={StepTitleTypes.StepTwo} />
-        <StepInfo info={StepInfoTypes.StepTwo} />
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <StyledFieldset>
-            {planOptions?.map((option) => (
-              <StyledOptionWrapper key={option.id}>
-                {option.icon}
-                <StyledLabel>
-                  <StyledInput type="radio" id={option.id} name={option.name} />
-                  <StyledOptionName>{option.name}</StyledOptionName>
-                  <StyledOptionPrice>
-                    {billingFrequency === ToggleLabelTypes.Monthly
-                      ? `$ ${option.priceMonthly}/ mo`
-                      : `$ ${option.priceYearly}/ yr`}
-                  </StyledOptionPrice>
-
-                  <StyledFreeMessage>
-                    {billingFrequency === ToggleLabelTypes.Yearly
-                      ? "2 months free"
-                      : ""}
-                  </StyledFreeMessage>
-                </StyledLabel>
-              </StyledOptionWrapper>
-            ))}
-            <StyledToggleSwitchWrapper>
-              <ToggleSwitch
-                billingFrequency={billingFrequency}
-                setSelectedBillingFrequency={setSelectedBillingFrequency}
-              />
-            </StyledToggleSwitchWrapper>
-          </StyledFieldset>
-        </form>
+      <StepsLayout>
+        <StyledForm>
+          <StyledFormContainer>
+            <StepTitle title={StepTitleTypes.StepTwo} />
+            <StepInfo info={StepInfoTypes.StepTwo} />
+            <StyledFieldset>
+              <StyledLegend>{StepInfoTypes.StepTwo}</StyledLegend>
+              {planOptions?.map((option) => (
+                <StyledOptionWrapper
+                  key={option.id}
+                  selected={
+                    watchPlan
+                      ? watchPlan === option.name
+                      : plan.planName === option.name
+                  }
+                >
+                  {option.icon}
+                  <StyledLabel htmlFor={option.id}>
+                    <StyledInput
+                      {...register("planName")}
+                      type="radio"
+                      id={option.id}
+                      onChange={handleChange}
+                      value={option.name}
+                      defaultValue={plan.planName}
+                      name="planOptions"
+                    />
+                    <StyledOptionName>{option.name}</StyledOptionName>
+                    <StyledOptionPrice>
+                      {billingFrequency === ToggleLabelTypes.Monthly
+                        ? `$ ${option.priceMonthly}/ mo`
+                        : `$ ${option.priceYearly}/ yr`}
+                    </StyledOptionPrice>
+                    <StyledFreeMessage>
+                      {billingFrequency === ToggleLabelTypes.Yearly
+                        ? "2 months free"
+                        : ""}
+                    </StyledFreeMessage>
+                  </StyledLabel>
+                </StyledOptionWrapper>
+              ))}
+              <StyledToggleSwitchWrapper>
+                <ToggleSwitch />
+              </StyledToggleSwitchWrapper>
+            </StyledFieldset>
+          </StyledFormContainer>
+          <NavigationButtons
+            back="/"
+            next="/stepThree"
+            handleForwardClick={handleForwardClick}
+            handleBackwardClick={handleBackwardClick}
+            stepIsValidated={isValid}
+          />
+        </StyledForm>
       </StepsLayout>
     </Layout>
   );

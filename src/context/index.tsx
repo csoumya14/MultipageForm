@@ -1,45 +1,45 @@
-import {
-  FormContextDataTypes,
-  formInputDataTypes,
-} from "@/types/formInputDataTypes";
-import {
-  ReactNode,
-  SetStateAction,
-  createContext,
-  useContext,
-  useState,
-} from "react";
+import { formInputDataTypes } from "@/types/formInputDataTypes";
+import { ReactNode, createContext, useContext, useState } from "react";
 
 interface Props {
   children?: ReactNode;
 }
 
-const defaultValues = {
-  data: {
-    name: "",
-    email: "",
-    phoneNumber: "",
-    address: "",
-    plan: "",
-    planTerm: "",
-  },
-  setFormValues: (): void => {},
-};
-
-export const AppStateContext =
-  createContext<FormContextDataTypes>(defaultValues);
+export const AppStateContext = createContext<formInputDataTypes>({
+  profile: { firstName: "", email: "", phoneNumber: "" },
+  plan: { planName: "" },
+  billingFrequency: "Yearly",
+  addOn: [""],
+  setSelectedBillingFrequency: () => {},
+  setProfile: () => {},
+  setPlan: () => {},
+  setAddOn: () => {},
+});
 
 export function AppProvider({ children }: Props) {
-  const [data, setData] = useState({});
+  const [profile, setProfile] = useState({
+    firstName: "",
+    email: "",
+    phoneNumber: "",
+  });
+  const [plan, setPlan] = useState({ planName: "" });
+  const [addOn, setAddOn] = useState([""]);
+  const [billingFrequency, setSelectedBillingFrequency] =
+    useState<string>("Yearly");
 
-  const setFormValues = (values: {}) => {
-    setData((prevValues) => ({
-      ...prevValues,
-      ...values,
-    }));
-  };
   return (
-    <AppStateContext.Provider value={{ data, setFormValues }}>
+    <AppStateContext.Provider
+      value={{
+        profile,
+        plan,
+        billingFrequency,
+        setSelectedBillingFrequency,
+        addOn,
+        setProfile,
+        setPlan,
+        setAddOn,
+      }}
+    >
       {children}
     </AppStateContext.Provider>
   );

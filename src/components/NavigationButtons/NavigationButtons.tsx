@@ -1,37 +1,48 @@
 import Link from "next/link";
-import { FC } from "react";
+import { FC, isValidElement } from "react";
 import {
-  NextButtonLink,
-  StyledButton,
+  StyledBackButton,
+  StyledNextButton,
   Wrapper,
 } from "./NavigationButtons.style";
-import { Button } from "../Button/Button";
+
+import { useRouter } from "next/navigation";
 
 type NavigationButtonsProps = {
   back: string;
   next: string;
   home?: boolean;
+  type?:string;
   stepIsValidated?: boolean;
+  handleForwardClick: () => void;
+  handleBackwardClick: () => void;
 };
 
 export const NavigationButtons: FC<NavigationButtonsProps> = ({
-  back,
-  next,
+  handleBackwardClick,
+  handleForwardClick,
   home,
-  stepIsValidated = true,
+  type="button",
+  stepIsValidated,
 }) => {
+  const router = useRouter();
+
   return (
     <Wrapper>
       {!home && (
-        <Link href={back}>
-          <StyledButton type="button"> Go Back</StyledButton>
-        </Link>
+        <StyledBackButton type="button" onClick={handleBackwardClick}>
+          {" "}
+          Go Back
+        </StyledBackButton>
       )}
-      <NextButtonLink href={next}>
-        <StyledButton type="button" disabled={!stepIsValidated}>
-          Next Step
-        </StyledButton>
-      </NextButtonLink>
+
+      <StyledNextButton
+        type={type}
+        disabled={!stepIsValidated}
+        onClick={handleForwardClick}
+      >
+        Next Step
+      </StyledNextButton>
     </Wrapper>
   );
 };

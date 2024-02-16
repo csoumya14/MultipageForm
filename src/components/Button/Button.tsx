@@ -8,6 +8,7 @@ export type ButtonProps = {
   type: string;
   color?: "primary" | "secondary";
   disabled?: boolean;
+  form?:string;
 };
 
 export const Button: FC<ButtonProps> = ({
@@ -15,12 +16,14 @@ export const Button: FC<ButtonProps> = ({
   children,
   color = "primary",
   className,
+  form,
   disabled,
   type,
 }) => {
   return (
     <Container
       type={type}
+      form={form}
       className={className}
       onClick={onClick}
       color={color}

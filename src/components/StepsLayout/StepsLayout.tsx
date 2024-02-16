@@ -5,31 +5,18 @@ import { StepTitle } from "./StepTitle/StepTitle";
 import { NavBar } from "../NavBar/NavBar";
 import { Article, Wrapper } from "./StepsLayout.style";
 import { NavigationButtons } from "../NavigationButtons/NavigationButtons";
+import { SubmitHandler } from "react-hook-form";
+import { PersonalInfoTypes } from "@/types/formInputDataTypes";
 
 type StepsLayoutProps = {
   children: ReactNode;
-  back: string;
-  next: string;
-  home?: boolean;
 };
 
-export const StepsLayout: FC<StepsLayoutProps> = ({
-  children,
-  back,
-  next,
-  home,
-}) => {
-  const pathname = usePathname();
-  const activeOne = pathname === "/step-one";
-  const activeTwo = pathname === "/step-two";
-  const activeThree = pathname === "/step-three";
-  const activeAnswers = pathname === "/step-four";
-
+export const StepsLayout: FC<StepsLayoutProps> = ({ children }) => {
   return (
     <Article>
       <NavBar />
       <Wrapper>{children}</Wrapper>
-      <NavigationButtons back={back} home={home} next={next} />
     </Article>
   );
 };

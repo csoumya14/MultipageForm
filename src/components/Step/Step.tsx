@@ -1,5 +1,4 @@
 import { FC, ReactNode } from "react";
-import { NavigationButtons } from "../NavigationButtons/NavigationButtons";
 
 interface StepProps {
   children: ReactNode;

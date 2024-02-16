@@ -7,8 +7,6 @@ export const StyledHeading = styled(Banner)`
 `;
 
 export const StyledInput = styled(Input)`
-  opacity: 0;
-
   position: absolute;
 `;
 

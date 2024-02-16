@@ -1,9 +1,4 @@
-import {
-  FC,
-  HTMLAttributes,
-  PropsWithChildren,
-  SVGAttributes,
-} from "react";
+import { FC, HTMLAttributes, PropsWithChildren, SVGAttributes } from "react";
 
 export type SvgIconProps = (
   | {

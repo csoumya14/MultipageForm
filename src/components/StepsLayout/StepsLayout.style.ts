@@ -12,12 +12,8 @@ export const Article = styled.article`
 `;
 
 export const Wrapper = styled.div`
-  border-radius: 4px;
   flex: 2;
-  padding: 2rem;
-  margin: 0rem 1rem;
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  background-color: ${(props) => props.theme.palette.neutral.white};
 `;
