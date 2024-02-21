@@ -35,7 +35,6 @@ export const StyledOptionName = styled.span`
   color: ${(props) => props.theme.palette.primary.denim};
 `;
 export const StyledFreeMessage = styled.span`
-  height: 1rem;
   color: ${(props) => props.theme.palette.primary.denim};
 `;
 
@@ -53,23 +52,19 @@ export const StyledToggleSwitchWrapper = styled.div`
 export const StyledLabel = styled.label`
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-`;
-
-export const StyledFormContainer = styled.div`
-  padding: 1.5rem;
-  border-radius: 10px;
-  margin: 0 2rem;
-  background-color: ${(props) => props.theme.palette.neutral.white};
+  gap: 0.3rem;
 `;
 
 export const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  
   max-height: 100vh;
   width: 100vw;
 `;
+
+
+
 
 export const StyledLegend = styled.legend`
   color: ${(props) => props.theme.palette.primary.grey};

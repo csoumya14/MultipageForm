@@ -60,7 +60,7 @@ export const RadioSwitchLabel = styled.label`
 
 export const RadioSwitch = styled.fieldset`
   border: none;
-  margin: 2.5rem auto;
+  margin: 0.5rem auto;
   padding: 0;
   white-space: nowrap;
   &:focus-within ${RadioSwitchLabel} {

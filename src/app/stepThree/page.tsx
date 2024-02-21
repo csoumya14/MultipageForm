@@ -20,7 +20,7 @@ import { NavigationButtons } from "@/components/NavigationButtons/NavigationButt
 import { useRouter } from "next/navigation";
 import { CheckBoxes } from "@/components/CheckBoxes/CheckBoxes";
 
-interface addOnOptionsType {
+export interface addOnOptionsType {
   id: string;
   name: string;
   priceMonthly: string;
@@ -61,7 +61,8 @@ export default function Home() {
     formState: { errors, isValid },
   } = useForm<AddOnTypes>({ mode: "onChange" });
 
-  console.log("addOn selected", addOn);
+  const watchAddOn = watch("addOn", []);
+
   const router = useRouter();
   const handleBackwardClick = () => {
     router.back();
@@ -70,7 +71,6 @@ export default function Home() {
     router.push("/stepThree");
   };
 
-  const watchAddOn = watch();
   console.log("watchShowAddon", watchAddOn);
 
   return (
@@ -86,6 +86,7 @@ export default function Home() {
                 addOnOptions={addOnOptions}
                 name="addOn"
                 control={control}
+                watchAddOn={watchAddOn}
               />
               <StyledToggleSwitchWrapper>
                 <ToggleSwitch />

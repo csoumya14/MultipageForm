@@ -1,5 +1,4 @@
-import Link from "next/link";
-import { FC, isValidElement } from "react";
+import { FC } from "react";
 import {
   StyledBackButton,
   StyledNextButton,

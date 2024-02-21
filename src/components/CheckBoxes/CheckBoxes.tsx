@@ -10,28 +10,23 @@ import {
 } from "./CheckBoxes.style";
 
 import { useAppState } from "@/context";
-import { FC } from "react";
+import { FC, useState } from "react";
 import { ToggleLabelTypes } from "@/enums/ToggleLabel";
 import { AddOnTypes } from "@/types/formInputDataTypes";
-
-interface addOnOptionType {
-  id: string;
-  name: string;
-  priceMonthly: string;
-  priceYearly: string;
-  textDescription: string;
-}
+import { addOnOptionsType } from "@/app/stepThree/page";
 
 interface CheckBoxesTypes {
-  addOnOptions: addOnOptionType[];
+  addOnOptions: addOnOptionsType[];
   name: "addOn" | `addOn.${number}`;
   control?: Control<AddOnTypes>;
+  watchAddOn: string[];
 }
 
 export const CheckBoxes: FC<CheckBoxesTypes> = ({
   addOnOptions,
   control,
   name,
+  watchAddOn,
 }) => {
   const { addOn, billingFrequency, setAddOn } = useAppState();
   const { field } = useController({
@@ -39,19 +34,23 @@ export const CheckBoxes: FC<CheckBoxesTypes> = ({
     name,
   });
 
+  const isSelected = (name: string) => {
+    return watchAddOn.includes(name);
+  };
   return (
     <>
       {addOnOptions?.map((option, index) => (
-        <StyledOptionWrapper key={option.id} selected>
+        <StyledOptionWrapper key={option.id} selected={isSelected(option.name)}>
           <StyledLabel htmlFor={option.id}>
             <StyledInput
               type="checkbox"
               id={option.id}
               onChange={(e: any) => {
                 const addOnCopy = [...addOn];
-
                 // update checkbox value
                 addOnCopy[index] = e.target.checked ? e.target.value : null;
+
+                // update selected property in addOnOptions
 
                 // send data to react hook form
                 field.onChange(addOnCopy);

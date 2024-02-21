@@ -4,6 +4,7 @@ import backgroundImageSideBar from "../../../public/images/bg-sidebar-mobile.svg
 export const Section = styled.section`
   display: flex;
   max-width: 100vw;
+  min-height: 100vh;
   background-color: ${(props) => props.theme.palette.primary.background};
   background-image: url(${backgroundImageSideBar.src});
   background-size: contain;

@@ -8,12 +8,11 @@ import {
   StyledFieldset,
   StyledOptionWrapper,
   StyledLabel,
+  StyledForm,
   StyledToggleSwitchWrapper,
   StyledOptionName,
   StyledOptionPrice,
   StyledFreeMessage,
-  StyledFormContainer,
-  StyledForm,
   StyledLegend,
 } from "./secondStep.style";
 import { StepTitle } from "@/components/StepTitle/StepTitle";
@@ -27,6 +26,10 @@ import { ToggleSwitch } from "@/components/ToggleSwitch/ToggleSwitch";
 import { ToggleLabelTypes } from "@/enums/ToggleLabel";
 import { NavigationButtons } from "@/components/NavigationButtons/NavigationButtons";
 import { useRouter } from "next/navigation";
+import {
+  
+  StyledFormContainer,
+} from "@/styles/SharedStyles/SharedStyles";
 
 export default function Home() {
   const { plan, billingFrequency, setSelectedBillingFrequency, setPlan } =
@@ -50,7 +53,6 @@ export default function Home() {
     router.push("/stepThree");
   };
 
-  console.log("valid", isValid);
   const watchPlan = watch("planName", "");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -86,7 +88,6 @@ export default function Home() {
         <StyledForm>
           <StyledFormContainer>
             <StepTitle title={StepTitleTypes.StepTwo} />
-            <StepInfo info={StepInfoTypes.StepTwo} />
             <StyledFieldset>
               <StyledLegend>{StepInfoTypes.StepTwo}</StyledLegend>
               {planOptions?.map((option) => (
@@ -125,9 +126,9 @@ export default function Home() {
               ))}
               <StyledToggleSwitchWrapper>
                 <ToggleSwitch />
-              </StyledToggleSwitchWrapper>
+              </StyledToggleSwitchWrapper> 
             </StyledFieldset>
-          </StyledFormContainer>
+          </StyledFormContainer> 
           <NavigationButtons
             back="/"
             next="/stepThree"

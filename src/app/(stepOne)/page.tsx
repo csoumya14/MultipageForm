@@ -6,8 +6,6 @@ import { StepInfoTypes, StepTitleTypes } from "@/enums/StepTitles";
 import {
   StyledInput,
   StyledFieldset,
-  StyledFormContainer,
-  StyledForm,
   StyledLegend,
 } from "./stepOne.style";
 import { StepTitle } from "@/components/StepTitle/StepTitle";
@@ -16,6 +14,7 @@ import { Field } from "@/components/Forms/Field/Field";
 import { PersonalInfoTypes } from "@/types/formInputDataTypes";
 import { NavigationButtons } from "@/components/NavigationButtons/NavigationButtons";
 import { useRouter } from "next/navigation";
+import { StyledForm,StyledFormContainer } from "@/styles/SharedStyles/SharedStyles";
 
 const PHONE_NO_REGEX = /^[0-9\- ]{8,14}$/;
 const EMAIL_REGEX =
@@ -48,7 +47,6 @@ export default function Home() {
   return (
     <Layout>
       <StepsLayout>
-        {/* <StepInfo info={StepInfoTypes.StepOne} /> */}
         <StyledForm>
           <StyledFormContainer>
             <StepTitle title={StepTitleTypes.StepOne} />

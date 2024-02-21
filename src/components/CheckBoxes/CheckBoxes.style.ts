@@ -8,6 +8,7 @@ export const StyledHeading = styled(Banner)`
 
 export const StyledInput = styled(Input)`
   position: absolute;
+  opacity: 0;
 `;
 
 export const StyledFieldset = styled.fieldset`

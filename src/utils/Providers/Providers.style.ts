@@ -5,5 +5,5 @@ export const Main = styled.main`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  max-height: 100vh;
+  background-color:red;
 `;
