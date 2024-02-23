@@ -26,7 +26,7 @@ export const StyledOptionWrapper = styled.div<{ selected: boolean }>`
   border-radius: 6px;
   padding: 1rem;
   align-items: center;
-  gap: 1rem;
+  gap: 0.5rem;
 `;
 
 export const StyledOptionName = styled.span`
@@ -52,7 +52,7 @@ export const StyledToggleSwitchWrapper = styled.div`
 export const StyledLabel = styled.label`
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 0.3rem;
 `;
 
 export const StyledFormContainer = styled.div`

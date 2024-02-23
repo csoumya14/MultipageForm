@@ -5,12 +5,12 @@ export const Article = styled.article`
   flex-direction: column;
   align-items: center;
   width: 100%;
+  justify-content: space-between;
 `;
 
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  flex: 2;
   justify-content: space-between;
   gap: 1rem;
 `;

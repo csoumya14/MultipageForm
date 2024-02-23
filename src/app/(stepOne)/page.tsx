@@ -7,6 +7,7 @@ import {
   StyledInput,
   StyledFieldset,
   StyledLegend,
+  StyledForm,
 } from "./stepOne.style";
 import { StepTitle } from "@/components/StepTitle/StepTitle";
 import { useAppState } from "@/context";
@@ -14,7 +15,7 @@ import { Field } from "@/components/Forms/Field/Field";
 import { PersonalInfoTypes } from "@/types/formInputDataTypes";
 import { NavigationButtons } from "@/components/NavigationButtons/NavigationButtons";
 import { useRouter } from "next/navigation";
-import { StyledForm,StyledFormContainer } from "@/styles/SharedStyles/SharedStyles";
+import { StyledFormContainer } from "@/styles/SharedStyles/SharedStyles";
 
 const PHONE_NO_REGEX = /^[0-9\- ]{8,14}$/;
 const EMAIL_REGEX =

@@ -7,7 +7,6 @@ export const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 1rem;
-  border: 1px solid green;
   background-color: ${(props) => props.theme.palette.neutral.white};
 `;
 

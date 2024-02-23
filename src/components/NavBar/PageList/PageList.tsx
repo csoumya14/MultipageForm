@@ -19,7 +19,6 @@ export const PageList: FC<PageListProps> = ({ listItem }) => {
     <StyledList key={listItem.id} className="fontBarlowCondensed">
       <StyledLink
         key={listItem.id}
-        href={listItem.href}
         aria-current={listItem.href === pathname ? "page" : undefined}
       >
         {listItem.id}

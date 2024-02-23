@@ -24,3 +24,11 @@ export const StyledLegend = styled.legend`
   color: ${(props) => props.theme.palette.primary.grey};
   line-height: ${(props) => props.theme.lineHeight.bodyLargeScreen}px;
 `;
+
+export const StyledForm = styled.form`
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
+  max-height: 100vh;
+  width: 100vw;
+`;

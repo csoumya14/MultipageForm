@@ -5,17 +5,15 @@ import { useForm } from "react-hook-form";
 import { StepInfoTypes, StepTitleTypes } from "@/enums/StepTitles";
 import {
   StyledFieldset,
-  StyledToggleSwitchWrapper,
-  StyledFormContainer,
   StyledForm,
   StyledLegend,
 } from "./thirdStep.style";
 import { StepTitle } from "@/components/StepTitle/StepTitle";
-import { StepInfo } from "@/components/StepInfo/StepInfo";
 import { useAppState } from "@/context";
-
+import {
+  StyledFormContainer,
+} from "@/styles/SharedStyles/SharedStyles";
 import { AddOnTypes } from "@/types/formInputDataTypes";
-import { ToggleSwitch } from "@/components/ToggleSwitch/ToggleSwitch";
 import { NavigationButtons } from "@/components/NavigationButtons/NavigationButtons";
 import { useRouter } from "next/navigation";
 import { CheckBoxes } from "@/components/CheckBoxes/CheckBoxes";
@@ -28,7 +26,7 @@ export interface addOnOptionsType {
   textDescription: string;
 }
 
-const addOnOptions: addOnOptionsType[] = [
+export const addOnOptions: addOnOptionsType[] = [
   {
     id: "1OnlineService",
     name: "Online Service",
@@ -52,7 +50,7 @@ const addOnOptions: addOnOptionsType[] = [
   },
 ];
 
-export default function Home() {
+export default function StepThree() {
   const { addOn } = useAppState();
 
   const {
@@ -68,7 +66,7 @@ export default function Home() {
     router.back();
   };
   const handleForwardClick = () => {
-    router.push("/stepThree");
+    router.push("/stepFour");
   };
 
   console.log("watchShowAddon", watchAddOn);
@@ -79,18 +77,14 @@ export default function Home() {
         <StyledForm>
           <StyledFormContainer>
             <StepTitle title={StepTitleTypes.StepThree} />
-            <StepInfo info={StepInfoTypes.StepThree} />
             <StyledFieldset>
-              <StyledLegend>{StepInfoTypes.StepTwo}</StyledLegend>
+              <StyledLegend>{StepInfoTypes.StepThree}</StyledLegend>
               <CheckBoxes
                 addOnOptions={addOnOptions}
                 name="addOn"
                 control={control}
                 watchAddOn={watchAddOn}
               />
-              <StyledToggleSwitchWrapper>
-                <ToggleSwitch />
-              </StyledToggleSwitchWrapper>
             </StyledFieldset>
           </StyledFormContainer>
           <NavigationButtons

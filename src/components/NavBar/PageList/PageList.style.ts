@@ -4,7 +4,7 @@ import styled from "styled-components";
 export const StyledList = styled.li`
   list-style-type: none;
 `;
-export const StyledLink = styled(Link)`
+export const StyledLink = styled.div`
   text-decoration: none;
   border-radius: 50%;
   border: 1px solid;
