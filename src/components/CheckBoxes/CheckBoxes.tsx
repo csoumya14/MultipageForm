@@ -5,46 +5,47 @@ import {
   StyledOptionWrapper,
   StyledLabel,
   StyledOptionName,
-  StyledOptionPrice,
-  StyledFreeMessage,
+  Wrapper,
 } from "./CheckBoxes.style";
 
 import { useAppState } from "@/context";
-import { FC, useState } from "react";
-import { ToggleLabelTypes } from "@/enums/ToggleLabel";
+import { FC } from "react";
 import { AddOnTypes } from "@/types/formInputDataTypes";
-import { addOnOptionsType } from "@/app/stepThree/page";
+import addOnOptions from "../../data/addOnInfo.json";
+import { PriceOption } from "../PriceOption/PriceOption";
 
 interface CheckBoxesTypes {
-  addOnOptions: addOnOptionsType[];
   name: "addOn" | `addOn.${number}`;
   control?: Control<AddOnTypes>;
   watchAddOn: string[];
 }
 
 export const CheckBoxes: FC<CheckBoxesTypes> = ({
-  addOnOptions,
   control,
   name,
   watchAddOn,
 }) => {
-  const { addOn, billingFrequency, setAddOn } = useAppState();
+  const { addOn, setAddOn } = useAppState();
   const { field } = useController({
     control,
     name,
   });
 
   const isSelected = (name: string) => {
-    return watchAddOn.includes(name);
+    return watchAddOn ? watchAddOn.includes(name) : addOn.includes(name);
   };
+
   return (
     <>
-      {addOnOptions?.map((option, index) => (
-        <StyledOptionWrapper key={option.id} selected={isSelected(option.name)}>
-          <StyledLabel htmlFor={option.id}>
+      {Object.entries(addOnOptions).map(([optionType, optionInfo], index) => (
+        <StyledOptionWrapper
+          key={optionType}
+          selected={isSelected(optionType)}
+        >
+          <StyledLabel htmlFor={optionType}>
             <StyledInput
               type="checkbox"
-              id={option.id}
+              id={optionType}
               onChange={(e: any) => {
                 const addOnCopy = [...addOn];
                 // update checkbox value
@@ -58,20 +59,16 @@ export const CheckBoxes: FC<CheckBoxesTypes> = ({
                 // update local state
                 setAddOn(addOnCopy);
               }}
-              value={option.name}
+              value={optionType}
               name="planOptions"
             />
-            <StyledOptionName>{option.name}</StyledOptionName>
-            <StyledOptionPrice>
-              {billingFrequency === ToggleLabelTypes.Monthly
-                ? `$ ${option.priceMonthly}/ mo`
-                : `$ ${option.priceYearly}/ yr`}
-            </StyledOptionPrice>
-            <StyledFreeMessage>
-              {billingFrequency === ToggleLabelTypes.Yearly
-                ? "2 months free"
-                : ""}
-            </StyledFreeMessage>
+            <Wrapper>
+              <StyledOptionName>{optionInfo.title}</StyledOptionName>
+              <PriceOption
+                monthlyPrice={optionInfo.price.monthly}
+                yearlyPrice={optionInfo.price.yearly}
+              />
+            </Wrapper>
           </StyledLabel>
         </StyledOptionWrapper>
       ))}

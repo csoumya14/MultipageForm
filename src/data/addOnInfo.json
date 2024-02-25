@@ -1,17 +1,26 @@
 {
-    "multiplayer": {
-        "title": "Online service",
-        "description": "Access to multiplayer games",
-        "price": 10
-    },
-    "extraStorage": {
-        "title": "Larger storage",
-        "description": "Extra 1TB of cloud save",
-        "price": 20
-    }, 
-    "customProfile": {
-        "title": "Customizable profile",
-        "description": "Custom theme on your profile",
-        "price": 20 
+  "multiplayer": {
+    "title": "Online service",
+    "description": "Access to multiplayer games",
+    "price": {
+      "yearly": 10,
+      "monthly": 1
     }
+  },
+  "extraStorage": {
+    "title": "Larger storage",
+    "description": "Extra 1TB of cloud save",
+    "price": {
+      "yearly": 20,
+      "monthly": 2
+    }
+  },
+  "customProfile": {
+    "title": "Customizable profile",
+    "description": "Custom theme on your profile",
+    "price": {
+      "yearly": 20,
+      "monthly": 2
+    }
+  }
 }

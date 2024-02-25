@@ -5,13 +5,12 @@ import {
   Wrapper,
 } from "./NavigationButtons.style";
 
-import { useRouter } from "next/navigation";
-
 type NavigationButtonsProps = {
   back: string;
-  next: string;
+  next?: string;
   home?: boolean;
-  type?:string;
+  summary?: boolean;
+  type?: string;
   stepIsValidated?: boolean;
   handleForwardClick: () => void;
   handleBackwardClick: () => void;
@@ -21,11 +20,10 @@ export const NavigationButtons: FC<NavigationButtonsProps> = ({
   handleBackwardClick,
   handleForwardClick,
   home,
-  type="button",
+  summary,
+  type = "button",
   stepIsValidated,
 }) => {
-  const router = useRouter();
-
   return (
     <Wrapper>
       {!home && (
@@ -34,14 +32,19 @@ export const NavigationButtons: FC<NavigationButtonsProps> = ({
           Go Back
         </StyledBackButton>
       )}
-
-      <StyledNextButton
-        type={type}
-        disabled={!stepIsValidated}
-        onClick={handleForwardClick}
-      >
-        Next Step
-      </StyledNextButton>
+      {!summary ? (
+        <StyledNextButton
+          type={type}
+          disabled={!stepIsValidated}
+          onClick={handleForwardClick}
+        >
+          Next Step
+        </StyledNextButton>
+      ) : (
+        <StyledNextButton type={type} disabled={!stepIsValidated}>
+          confirm
+        </StyledNextButton>
+      )}
     </Wrapper>
   );
 };

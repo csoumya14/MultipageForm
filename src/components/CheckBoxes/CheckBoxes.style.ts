@@ -6,10 +6,7 @@ export const StyledHeading = styled(Banner)`
   color: ${(props) => props.theme.palette.primary.denim};
 `;
 
-export const StyledInput = styled(Input)`
-  position: absolute;
-  opacity: 0;
-`;
+export const StyledInput = styled(Input)``;
 
 export const StyledFieldset = styled.fieldset`
   display: flex;
@@ -51,8 +48,8 @@ export const StyledToggleSwitchWrapper = styled.div`
 
 export const StyledLabel = styled.label`
   display: flex;
-  flex-direction: column;
-  gap: 0.3rem;
+  flex-direction: row;
+  gap: 0.5rem;
 `;
 
 export const StyledFormContainer = styled.div`
@@ -73,4 +70,10 @@ export const StyledForm = styled.form`
 export const StyledLegend = styled.legend`
   color: ${(props) => props.theme.palette.primary.grey};
   line-height: ${(props) => props.theme.lineHeight.bodyLargeScreen}px;
+`;
+
+export const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 `;

@@ -11,9 +11,11 @@ import { NavigationButtons } from "@/components/NavigationButtons/NavigationButt
 import { useRouter } from "next/navigation";
 import { StepInfo } from "@/components/StepInfo/StepInfo";
 import planOptions from "../../data/planOptions.json";
+import addOnOptions from "../../data/addOnInfo.json";
 import { ToggleLabelTypes } from "@/enums/ToggleLabel";
-import { addOnOptions } from "../stepThree/page";
 import { planOptionsType } from "@/types/planOptionsTypes";
+import { addOnInfoType } from "@/types/addOnInfoTypes";
+import { Summary } from "@/components/Summary/Summary";
 
 export interface addOnOptionsType {
   id: string;
@@ -26,14 +28,16 @@ export interface addOnOptionsType {
 export default function StepFour() {
   const { plan, billingFrequency, addOn } = useAppState();
   const planName = plan.planName;
-  console.log({planOptions})
-  console.log("plan", plan);
-  console.log("billingFrequency", billingFrequency);
-  console.log("addOn", addOn);
-  const selectedAddOns = addOn.map(addOnValues => {
-    return addOnOptions.find(option => option.name === addOnValues);
-  });
+  console.log({ planOptions });
 
+  console.log({ addOn });
+
+  const selectedAddOns = Object.entries(addOnOptions).map(
+    ([addOnType, addOnInfo]) => {
+      return addOn.find((item) => addOnInfo.title === item);
+    }
+  );
+  console.log("selected", selectedAddOns);
   const {
     control,
     watch,
@@ -58,30 +62,12 @@ export default function StepFour() {
         <StyledFormContainer>
           <StepTitle title={StepTitleTypes.StepFour} />
           <StepInfo info={StepInfoTypes.StepFour} />
-          <ul>
-            <li>
-              {planName}
-              {billingFrequency === ToggleLabelTypes.Monthly
-                ? "(monthly)"
-                : "(yearly)"}
-              {billingFrequency === ToggleLabelTypes.Monthly
-                ? `$ ${planOptions[planName as keyof planOptionsType].price.monthly}/ mo`
-                : `$ ${planOptions[planName as keyof planOptionsType].price.yearly}/ yr`}
-            </li>
-            {selectedAddOns.map(selectedPlan => (
-                <li key={selectedPlan?.name}>{selectedPlan?.name} {billingFrequency === ToggleLabelTypes.Monthly
-                  ? `$ ${selectedPlan?.priceMonthly}/ mo`
-                  : `$ ${selectedPlan?.priceYearly}/ yr`}</li>
-            )) }
-    
- 
-          </ul>
+          <Summary/>
           <NavigationButtons
-            back="/"
-            next="/stepTwo"
+            back="/stepThree"
             handleForwardClick={handleForwardClick}
             handleBackwardClick={handleBackwardClick}
-            home
+            summary
             stepIsValidated={isValid}
           />
         </StyledFormContainer>

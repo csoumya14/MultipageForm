@@ -21,4 +21,6 @@ export const StyledNextButton = styled(Button)`
 
 export const StyledBackButton = styled(Button)`
   padding: 1rem;
+  background: transparent;
+  color: ${(props) => props.theme.palette.primary.denim};
 `;

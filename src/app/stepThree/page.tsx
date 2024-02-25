@@ -3,16 +3,10 @@ import { Layout } from "@/components/Layout/Layout";
 import { StepsLayout } from "@/components/StepsLayout/StepsLayout";
 import { useForm } from "react-hook-form";
 import { StepInfoTypes, StepTitleTypes } from "@/enums/StepTitles";
-import {
-  StyledFieldset,
-  StyledForm,
-  StyledLegend,
-} from "./thirdStep.style";
+import { StyledFieldset, StyledForm, StyledLegend } from "./thirdStep.style";
 import { StepTitle } from "@/components/StepTitle/StepTitle";
 import { useAppState } from "@/context";
-import {
-  StyledFormContainer,
-} from "@/styles/SharedStyles/SharedStyles";
+import { StyledFormContainer } from "@/styles/SharedStyles/SharedStyles";
 import { AddOnTypes } from "@/types/formInputDataTypes";
 import { NavigationButtons } from "@/components/NavigationButtons/NavigationButtons";
 import { useRouter } from "next/navigation";
@@ -80,7 +74,6 @@ export default function StepThree() {
             <StyledFieldset>
               <StyledLegend>{StepInfoTypes.StepThree}</StyledLegend>
               <CheckBoxes
-                addOnOptions={addOnOptions}
                 name="addOn"
                 control={control}
                 watchAddOn={watchAddOn}

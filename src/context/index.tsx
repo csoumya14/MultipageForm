@@ -7,9 +7,9 @@ interface Props {
 
 export const AppStateContext = createContext<formInputDataTypes>({
   profile: { firstName: "", email: "", phoneNumber: "" },
-  plan: { planName: "" },
+  plan: { planName: "Arcade" },
   billingFrequency: "Yearly",
-  addOn: [""],
+  addOn: ["Online Service"],
   setSelectedBillingFrequency: () => {},
   setProfile: () => {},
   setPlan: () => {},
@@ -22,8 +22,8 @@ export function AppProvider({ children }: Props) {
     email: "",
     phoneNumber: "",
   });
-  const [plan, setPlan] = useState({ planName: "" });
-  const [addOn, setAddOn] = useState([""]);
+  const [plan, setPlan] = useState({ planName: "Arcade" });
+  const [addOn, setAddOn] = useState(["multiplayer"]);
   const [billingFrequency, setSelectedBillingFrequency] =
     useState<string>("Yearly");
 
