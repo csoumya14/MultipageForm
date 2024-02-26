@@ -6,5 +6,6 @@ export const StyledFormContainer = styled.div`
   display: flex;
   flex-direction: column;
   margin: 1rem 1rem;
+  gap: 1rem;
   background-color: ${(props) => props.theme.palette.neutral.white};
 `;

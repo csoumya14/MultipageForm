@@ -8,7 +8,7 @@ const COLOR = {
   `,
   secondary: css`
     color: ${(props) => props.theme.palette.neutral.white};
-    background: ${(props) => props.theme.palette.primary.purple};
+    background: ${(props) => props.theme.palette.primary.lightBlue};
   `,
 };
 

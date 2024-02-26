@@ -1,8 +1,8 @@
 import { Dispatch, FC, SetStateAction, useRef } from "react";
 import { StyledMenu } from "./NavBar.style";
 
-import { LinkItems } from "./LinkItems/LinkItems";
-import { PageList } from "./PageList/PageList";
+import { LinkItems } from "../../components/LinkItems/LinkItems";
+import { PageList } from "../../components/PageList/PageList";
 
 interface linkPageListType {
   id: number;

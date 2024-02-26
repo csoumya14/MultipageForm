@@ -1,6 +1,6 @@
 "use client";
 import { Layout } from "@/components/Layout/Layout";
-import { StepsLayout } from "@/components/StepsLayout/StepsLayout";
+import { StepsLayout } from "@/containers/StepsLayout/StepsLayout";
 import { useForm } from "react-hook-form";
 import { StepInfoTypes, StepTitleTypes } from "@/enums/StepTitles";
 import {
@@ -13,7 +13,7 @@ import { StepTitle } from "@/components/StepTitle/StepTitle";
 import { useAppState } from "@/context";
 import { Field } from "@/components/Forms/Field/Field";
 import { PersonalInfoTypes } from "@/types/formInputDataTypes";
-import { NavigationButtons } from "@/components/NavigationButtons/NavigationButtons";
+import { NavigationButtons } from "@/containers/NavigationButtons/NavigationButtons";
 import { useRouter } from "next/navigation";
 import { StyledFormContainer } from "@/styles/SharedStyles/SharedStyles";
 
@@ -91,6 +91,7 @@ export default function Home() {
                       value: true,
                       message: "Phone number is required",
                     },
+                    pattern: { value: PHONE_NO_REGEX, message: "incorrect phone number" },
                   })}
                   type="tel"
                   placeholder="e.g. +1234567890"

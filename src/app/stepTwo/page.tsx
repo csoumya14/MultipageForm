@@ -1,6 +1,6 @@
 "use client";
 import { Layout } from "@/components/Layout/Layout";
-import { StepsLayout } from "@/components/StepsLayout/StepsLayout";
+import { StepsLayout } from "@/containers/StepsLayout/StepsLayout";
 import { useForm } from "react-hook-form";
 import { StepInfoTypes, StepTitleTypes } from "@/enums/StepTitles";
 import {
@@ -13,10 +13,10 @@ import { StepTitle } from "@/components/StepTitle/StepTitle";
 import { useAppState } from "@/context";
 import { IndividualPlanTypes } from "@/types/formInputDataTypes";
 import { ToggleSwitch } from "@/components/ToggleSwitch/ToggleSwitch";
-import { NavigationButtons } from "@/components/NavigationButtons/NavigationButtons";
+import { NavigationButtons } from "@/containers/NavigationButtons/NavigationButtons";
 import { useRouter } from "next/navigation";
 import { StyledFormContainer } from "@/styles/SharedStyles/SharedStyles";
-import { PlanOptions } from "@/components/PlanOptions/PlanOptions";
+import { PlanOptions } from "@/containers/PlanOptions/PlanOptions";
 
 export default function Home() {
   const { plan, setPlan } = useAppState();

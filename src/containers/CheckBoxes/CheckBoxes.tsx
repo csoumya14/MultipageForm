@@ -12,7 +12,7 @@ import { useAppState } from "@/context";
 import { FC } from "react";
 import { AddOnTypes } from "@/types/formInputDataTypes";
 import addOnOptions from "../../data/addOnInfo.json";
-import { PriceOption } from "../PriceOption/PriceOption";
+import { PriceOption } from "../../components/PriceOption/PriceOption";
 
 interface CheckBoxesTypes {
   name: "addOn" | `addOn.${number}`;

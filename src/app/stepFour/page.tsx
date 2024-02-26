@@ -1,21 +1,18 @@
 "use client";
 import { Layout } from "@/components/Layout/Layout";
-import { StepsLayout } from "@/components/StepsLayout/StepsLayout";
+import { StepsLayout } from "@/containers/StepsLayout/StepsLayout";
 import { useForm } from "react-hook-form";
 import { StepInfoTypes, StepTitleTypes } from "@/enums/StepTitles";
 import { StepTitle } from "@/components/StepTitle/StepTitle";
 import { useAppState } from "@/context";
 import { StyledFormContainer } from "@/styles/SharedStyles/SharedStyles";
 import { AddOnTypes } from "@/types/formInputDataTypes";
-import { NavigationButtons } from "@/components/NavigationButtons/NavigationButtons";
+import { NavigationButtons } from "@/containers/NavigationButtons/NavigationButtons";
 import { useRouter } from "next/navigation";
 import { StepInfo } from "@/components/StepInfo/StepInfo";
-import planOptions from "../../data/planOptions.json";
-import addOnOptions from "../../data/addOnInfo.json";
-import { ToggleLabelTypes } from "@/enums/ToggleLabel";
-import { planOptionsType } from "@/types/planOptionsTypes";
-import { addOnInfoType } from "@/types/addOnInfoTypes";
-import { Summary } from "@/components/Summary/Summary";
+import { Summary } from "@/containers/Summary/Summary";
+import { useState } from "react";
+import { ThankYouMessage } from "@/containers/ThankYouMessage/ThankYouMessage";
 
 export interface addOnOptionsType {
   id: string;
@@ -26,20 +23,15 @@ export interface addOnOptionsType {
 }
 
 export default function StepFour() {
-  const { plan, billingFrequency, addOn } = useAppState();
-  const planName = plan.planName;
-  console.log({ planOptions });
+  const {  addOn } = useAppState();
+  const [confirm, setConfirm] = useState<boolean>(false);
+ 
 
   console.log({ addOn });
 
-  const selectedAddOns = Object.entries(addOnOptions).map(
-    ([addOnType, addOnInfo]) => {
-      return addOn.find((item) => addOnInfo.title === item);
-    }
-  );
-  console.log("selected", selectedAddOns);
+  
+  
   const {
-    control,
     watch,
     formState: { errors, isValid },
   } = useForm<AddOnTypes>({ mode: "onChange" });
@@ -54,23 +46,36 @@ export default function StepFour() {
     router.push("/stepThree");
   };
 
+  const handleConfirmClick = () => {
+    setConfirm(true);
+  };
+
   console.log("watchShowAddon", watchAddOn);
 
   return (
     <Layout>
       <StepsLayout>
-        <StyledFormContainer>
-          <StepTitle title={StepTitleTypes.StepFour} />
-          <StepInfo info={StepInfoTypes.StepFour} />
-          <Summary/>
-          <NavigationButtons
-            back="/stepThree"
-            handleForwardClick={handleForwardClick}
-            handleBackwardClick={handleBackwardClick}
-            summary
-            stepIsValidated={isValid}
-          />
-        </StyledFormContainer>
+        {confirm ? (
+          <StyledFormContainer>
+            <ThankYouMessage />
+          </StyledFormContainer>
+        ) : (
+          <>
+            <StyledFormContainer>
+              <StepTitle title={StepTitleTypes.StepFour} />
+              <StepInfo info={StepInfoTypes.StepFour} />
+              <Summary />
+            </StyledFormContainer>
+            <NavigationButtons
+              back="/stepThree"
+              handleForwardClick={handleForwardClick}
+              handleBackwardClick={handleBackwardClick}
+              handleConfirmClick={handleConfirmClick}
+              summary
+              stepIsValidated={isValid}
+            />{" "}
+          </>
+        )}
       </StepsLayout>
     </Layout>
   );

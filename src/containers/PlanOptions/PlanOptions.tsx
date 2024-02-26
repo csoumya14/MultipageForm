@@ -15,7 +15,7 @@ import { SvgPro } from "@/components/SVGs/SvgPro/SvgPro";
 import { ToggleLabelTypes } from "@/enums/ToggleLabel";
 import planOptions from "../../data/planOptions.json";
 import { FC } from "react";
-import { PriceOption } from "../PriceOption/PriceOption";
+import { PriceOption } from "../../components/PriceOption/PriceOption";
 
 interface PlanOptionsTypes {}
 

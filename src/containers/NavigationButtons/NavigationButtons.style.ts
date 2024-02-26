@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Button } from "../Button/Button";
+import { Button } from "../../components/Button/Button";
 import Link from "next/link";
 
 export const Wrapper = styled.div`
@@ -23,4 +23,10 @@ export const StyledBackButton = styled(Button)`
   padding: 1rem;
   background: transparent;
   color: ${(props) => props.theme.palette.primary.denim};
+`;
+
+export const StyledConfirmButton = styled(Button)`
+  padding: 1rem;
+  background: ${(props) => props.theme.palette.primary.purple};
+  color: ${(props) => props.theme.palette.neutral.white};
 `;

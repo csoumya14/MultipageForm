@@ -13,4 +13,5 @@ export const Wrapper = styled.div`
   flex-direction: column;
   justify-content: space-between;
   gap: 1rem;
+  min-height: 35rem;
 `;
