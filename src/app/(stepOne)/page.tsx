@@ -1,6 +1,5 @@
 "use client";
 import { Layout } from "@/components/Layout/Layout";
-import { StepsLayout } from "@/containers/StepsLayout/StepsLayout";
 import { useForm } from "react-hook-form";
 import { StepInfoTypes, StepTitleTypes } from "@/enums/StepTitles";
 import {
@@ -8,6 +7,7 @@ import {
   StyledFieldset,
   StyledLegend,
   StyledForm,
+  StyledFormContainer,
 } from "./stepOne.style";
 import { StepTitle } from "@/components/StepTitle/StepTitle";
 import { useAppState } from "@/context";
@@ -15,7 +15,6 @@ import { Field } from "@/components/Forms/Field/Field";
 import { PersonalInfoTypes } from "@/types/formInputDataTypes";
 import { NavigationButtons } from "@/containers/NavigationButtons/NavigationButtons";
 import { useRouter } from "next/navigation";
-import { StyledFormContainer } from "@/styles/SharedStyles/SharedStyles";
 
 const PHONE_NO_REGEX = /^[0-9\- ]{8,14}$/;
 const EMAIL_REGEX =
@@ -47,70 +46,67 @@ export default function Home() {
 
   return (
     <Layout>
-      <StepsLayout>
-        <StyledForm>
-          <StyledFormContainer>
-            <StepTitle title={StepTitleTypes.StepOne} />
-            <StyledFieldset>
-              <StyledLegend>{StepInfoTypes.StepOne}</StyledLegend>
-              <Field id="name" label="Name" error={errors.firstName}>
-                <StyledInput
-                  {...register("firstName", {
-                    required: { value: true, message: "Name is required" },
-                    maxLength: {
-                      value: 20,
-                      message: "min length should be 20",
-                    },
-                  })}
-                  type="name"
-                  placeholder="e.g.Stephen King"
-                  id="name"
-                  defaultValue={profile.firstName}
-                />
-              </Field>
-              <Field id="email" label="Email Address" error={errors.email}>
-                <StyledInput
-                  {...register("email", {
-                    required: { value: true, message: "Email is required" },
-                    pattern: { value: EMAIL_REGEX, message: "incorrect email" },
-                  })}
-                  type="email"
-                  placeholder="e.g.stephenking@lorem.com"
-                  id="email"
-                  defaultValue={profile.email}
-                />
-              </Field>
-              <Field
+      <StyledForm>
+        <StyledFormContainer>
+          <StepTitle title={StepTitleTypes.StepOne} />
+          <StyledFieldset>
+            <StyledLegend>{StepInfoTypes.StepOne}</StyledLegend>
+            <Field id="name" label="Name" error={errors.firstName}>
+              <StyledInput
+                {...register("firstName", {
+                  required: { value: true, message: "Name is required" },
+                  maxLength: {
+                    value: 20,
+                    message: "min length should be 20",
+                  },
+                })}
+                type="name"
+                placeholder="e.g.Stephen King"
+                id="name"
+                defaultValue={profile.firstName}
+              />
+            </Field>
+            <Field id="email" label="Email Address" error={errors.email}>
+              <StyledInput
+                {...register("email", {
+                  required: { value: true, message: "Email is required" },
+                  pattern: { value: EMAIL_REGEX, message: "incorrect email" },
+                })}
+                type="email"
+                placeholder="e.g.stephenking@lorem.com"
+                id="email"
+                defaultValue={profile.email}
+              />
+            </Field>
+            <Field
+              id="phoneNumber"
+              label="Phone Number"
+              error={errors.phoneNumber}
+            >
+              <StyledInput
+                {...register("phoneNumber", {
+                  required: {
+                    value: true,
+                    message: "Phone number is required",
+                  },
+                })}
+                type="tel"
+                placeholder="e.g. +1234567890"
                 id="phoneNumber"
-                label="Phone Number"
-                error={errors.phoneNumber}
-              >
-                <StyledInput
-                  {...register("phoneNumber", {
-                    required: {
-                      value: true,
-                      message: "Phone number is required",
-                    },
-                    pattern: { value: PHONE_NO_REGEX, message: "incorrect phone number" },
-                  })}
-                  type="tel"
-                  placeholder="e.g. +1234567890"
-                  id="phoneNumber"
-                  defaultValue={profile.phoneNumber}
-                />
-              </Field>
-            </StyledFieldset>
-          </StyledFormContainer>
-          <NavigationButtons
-            back="/"
-            next="/stepTwo"
-            handleForwardClick={handleForwardClick}
-            handleBackwardClick={handleBackwardClick}
-            home
-            stepIsValidated={isValid}
-          />
-        </StyledForm>
-      </StepsLayout>
+                defaultValue={profile.phoneNumber}
+              />
+            </Field>
+          </StyledFieldset>
+        </StyledFormContainer>
+        <NavigationButtons
+          back="/"
+          next="/stepTwo"
+          handleForwardClick={handleForwardClick}
+          handleBackwardClick={handleBackwardClick}
+          home
+          stepIsValidated={isValid}
+        />
+      </StyledForm>
     </Layout>
   );
 }

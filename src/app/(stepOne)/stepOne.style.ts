@@ -1,7 +1,15 @@
-
 import { Input } from "@/components/Forms/Input/Input";
 import styled from "styled-components";
 
+export const StyledFormContainer = styled.div`
+  padding: 1.5rem;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  margin: 0rem 1rem;
+  gap: 1rem;
+  background-color: ${(props) => props.theme.palette.neutral.white};
+`;
 
 export const StyledInput = styled(Input)`
   border: 1px solid;
@@ -18,8 +26,6 @@ export const StyledFieldset = styled.fieldset`
   border: none;
 `;
 
-
-
 export const StyledLegend = styled.legend`
   color: ${(props) => props.theme.palette.primary.grey};
   line-height: ${(props) => props.theme.lineHeight.bodyLargeScreen}px;
@@ -28,7 +34,8 @@ export const StyledLegend = styled.legend`
 export const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
-  gap: 5rem;
+  justify-content: space-between;
+  flex-grow: 1;
   max-height: 100vh;
   width: 100vw;
 `;

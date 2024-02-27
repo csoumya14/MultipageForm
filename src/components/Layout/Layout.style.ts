@@ -1,13 +1,18 @@
 import styled from "styled-components";
-import backgroundImageSideBar from "../../../public/images/bg-sidebar-mobile.svg";
 
 export const Section = styled.section`
-  display: flex;
   width: 100vw;
   min-height: 100vh;
+  display: flex;
+  position: absolute;
+  top: 7rem;
+  flex-direction: column;
   background-color: ${(props) => props.theme.palette.primary.background};
-  background-image: url(${backgroundImageSideBar.src});
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: top;
+`;
+
+export const Article = styled.article`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  flex-grow: 1;
 `;

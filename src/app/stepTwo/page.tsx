@@ -1,6 +1,5 @@
 "use client";
 import { Layout } from "@/components/Layout/Layout";
-import { StepsLayout } from "@/containers/StepsLayout/StepsLayout";
 import { useForm } from "react-hook-form";
 import { StepInfoTypes, StepTitleTypes } from "@/enums/StepTitles";
 import {
@@ -8,6 +7,7 @@ import {
   StyledForm,
   StyledToggleSwitchWrapper,
   StyledLegend,
+  StyledFormContainer,
 } from "./secondStep.style";
 import { StepTitle } from "@/components/StepTitle/StepTitle";
 import { useAppState } from "@/context";
@@ -15,7 +15,7 @@ import { IndividualPlanTypes } from "@/types/formInputDataTypes";
 import { ToggleSwitch } from "@/components/ToggleSwitch/ToggleSwitch";
 import { NavigationButtons } from "@/containers/NavigationButtons/NavigationButtons";
 import { useRouter } from "next/navigation";
-import { StyledFormContainer } from "@/styles/SharedStyles/SharedStyles";
+
 import { PlanOptions } from "@/containers/PlanOptions/PlanOptions";
 
 export default function Home() {
@@ -36,7 +36,6 @@ export default function Home() {
 
   return (
     <Layout>
-      <StepsLayout>
         <StyledForm>
           <StyledFormContainer>
             <StepTitle title={StepTitleTypes.StepTwo} />
@@ -55,8 +54,7 @@ export default function Home() {
             handleBackwardClick={handleBackwardClick}
             stepIsValidated={isValid}
           />
-        </StyledForm>
-      </StepsLayout>
+        </StyledForm>  
     </Layout>
   );
 }

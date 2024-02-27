@@ -23,10 +23,22 @@ export const StyledToggleSwitchWrapper = styled.div`
 export const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1;
   width: 100vw;
 `;
 
 export const StyledLegend = styled.legend`
   color: ${(props) => props.theme.palette.primary.grey};
   line-height: ${(props) => props.theme.lineHeight.bodyLargeScreen}px;
+`;
+
+export const StyledFormContainer = styled.div`
+  padding: 1.5rem;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  margin: 0rem 1rem;
+  gap: 1rem;
+  background-color: ${(props) => props.theme.palette.neutral.white};
 `;
