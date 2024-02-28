@@ -4,10 +4,10 @@ export const Section = styled.section`
   width: 100vw;
   min-height: 100vh;
   display: flex;
-  position: absolute;
-  top: 7rem;
-  flex-direction: column;
   background-color: ${(props) => props.theme.palette.primary.background};
+  @media (min-width: ${(props) => props.theme.mediaSize.md}) {
+    align-items: center;
+  }
 `;
 
 export const Article = styled.article`
@@ -15,4 +15,10 @@ export const Article = styled.article`
   flex-direction: column;
   width: 100%;
   flex-grow: 1;
+`;
+
+export const Container = styled.div`
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
 `;

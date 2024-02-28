@@ -11,7 +11,14 @@ export const StyledInput = styled(Input)`
   position: absolute;
 `;
 
-
+export const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  @media (min-width: ${(props) => props.theme.mediaSize.md}) {
+    flex-direction: row;
+  }
+`;
 
 export const StyledOptionWrapper = styled.div<{ selected: boolean }>`
   display: flex;
@@ -22,23 +29,28 @@ export const StyledOptionWrapper = styled.div<{ selected: boolean }>`
   padding: 1rem;
   align-items: center;
   gap: 1rem;
+  @media (min-width: ${(props) => props.theme.mediaSize.md}) {
+    padding: 3rem 1rem;
+    flex-direction: column;
+  }
 `;
 
 export const StyledOptionName = styled.span`
   font-weight: 700;
   color: ${(props) => props.theme.palette.primary.denim};
+  @media (min-width: ${(props) => props.theme.mediaSize.md}) {
+    text-align: center;
+  }
 `;
 export const StyledFreeMessage = styled.span`
   color: ${(props) => props.theme.palette.primary.denim};
+  @media (min-width: ${(props) => props.theme.mediaSize.md}) {
+    text-align: center;
+  }
 `;
-
 
 export const StyledLabel = styled.label`
   display: flex;
   flex-direction: column;
   gap: 0.3rem;
 `;
-
-
-
-

@@ -9,6 +9,11 @@ export const StyledFormContainer = styled.div`
   margin: 0rem 1rem;
   gap: 1rem;
   background-color: ${(props) => props.theme.palette.neutral.white};
+  @media (min-width: ${(props) => props.theme.mediaSize.md}) {
+    flex-direction: row;
+    padding: 3rem;
+    width: fit-content;
+  }
 `;
 
 export const StyledInput = styled(Input)`
@@ -38,4 +43,7 @@ export const StyledForm = styled.form`
   flex-grow: 1;
   max-height: 100vh;
   width: 100vw;
+  @media (min-width: ${(props) => props.theme.mediaSize.md}) {
+    align-items: center;
+  }
 `;

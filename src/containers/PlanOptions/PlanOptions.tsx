@@ -6,6 +6,7 @@ import {
   StyledLabel,
   StyledOptionName,
   StyledFreeMessage,
+  Container,
 } from "./PlanOptions.style";
 import { useAppState } from "@/context";
 import { IndividualPlanTypes } from "@/types/formInputDataTypes";
@@ -40,7 +41,6 @@ export const PlanOptions: FC<PlanOptionsTypes> = ({}) => {
     setValue,
     getValues,
     watch,
-    formState: { errors, isValid },
   } = useForm<IndividualPlanTypes>({ mode: "onChange" });
 
   const watchPlan = watch("planName", "");
@@ -52,7 +52,7 @@ export const PlanOptions: FC<PlanOptionsTypes> = ({}) => {
   };
 
   return (
-    <>
+    <Container>
       {Object.entries(planOptions).map(([planType, planInfo], index) => (
         <StyledOptionWrapper
           key={planType}
@@ -84,6 +84,6 @@ export const PlanOptions: FC<PlanOptionsTypes> = ({}) => {
           </StyledLabel>
         </StyledOptionWrapper>
       ))}
-    </>
+    </Container>
   );
 };

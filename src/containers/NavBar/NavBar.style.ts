@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import backgroundImageSideBar from "../../../public/images/bg-sidebar-mobile.svg";
+import backgroundImageSideBarMobile from "../../../public/images/bg-sidebar-mobile.svg";
+import backgroundImageSideBarDesktop from "../../../public/images/bg-sidebar-desktop.svg";
 
 export const StyledMenu = styled.nav`
   display: flex;
@@ -8,7 +9,17 @@ export const StyledMenu = styled.nav`
   flex-direction: row;
   padding-bottom: 3rem;
   width: 100%;
-  background-image: url(${backgroundImageSideBar.src});
+  background-image: url(${backgroundImageSideBarMobile.src});
+  background-size: cover;
+  background-repeat: no-repeat;
   justify-content: center;
   align-items: center;
+  @media (min-width: ${(props) => props.theme.mediaSize.md}) {
+    background-image: url(${backgroundImageSideBarDesktop.src});
+    background-size: contain;
+    width: fit-content;
+    background-position: start;
+    align-items: flex-start;
+    justify-content: start;
+  }
 `;

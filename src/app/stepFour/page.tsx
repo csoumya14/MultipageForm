@@ -1,5 +1,5 @@
 "use client";
-import { Layout } from "@/components/Layout/Layout";
+import { Layout } from "@/containers/Layout/Layout";
 import { useForm } from "react-hook-form";
 import { StepInfoTypes, StepTitleTypes } from "@/enums/StepTitles";
 import { StepTitle } from "@/components/StepTitle/StepTitle";

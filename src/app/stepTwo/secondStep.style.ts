@@ -1,5 +1,4 @@
 import { Banner } from "@/components/Banner/Banner";
-import { Input } from "@/components/Forms/Input/Input";
 import styled from "styled-components";
 
 export const StyledHeading = styled(Banner)`
@@ -9,7 +8,7 @@ export const StyledHeading = styled(Banner)`
 export const StyledFieldset = styled.fieldset`
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 2rem;
   border: none;
 `;
 
@@ -26,6 +25,9 @@ export const StyledForm = styled.form`
   justify-content: space-between;
   flex-grow: 1;
   width: 100vw;
+  @media (min-width: ${(props) => props.theme.mediaSize.md}) {
+    align-items: center;
+  }
 `;
 
 export const StyledLegend = styled.legend`
@@ -41,4 +43,16 @@ export const StyledFormContainer = styled.div`
   margin: 0rem 1rem;
   gap: 1rem;
   background-color: ${(props) => props.theme.palette.neutral.white};
+  @media (min-width: ${(props) => props.theme.mediaSize.md}) {
+    flex-direction: row;
+    padding: 3rem;
+    gap: 1rem;
+    width: fit-content;
+  }
+`;
+
+export const StyledWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 `;

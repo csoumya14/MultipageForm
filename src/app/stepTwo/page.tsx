@@ -1,6 +1,5 @@
 "use client";
-import { Layout } from "@/components/Layout/Layout";
-import { useForm } from "react-hook-form";
+import { Layout } from "@/containers/Layout/Layout";
 import { StepInfoTypes, StepTitleTypes } from "@/enums/StepTitles";
 import {
   StyledFieldset,
@@ -8,24 +7,21 @@ import {
   StyledToggleSwitchWrapper,
   StyledLegend,
   StyledFormContainer,
+  StyledWrapper,
 } from "./secondStep.style";
 import { StepTitle } from "@/components/StepTitle/StepTitle";
-import { useAppState } from "@/context";
-import { IndividualPlanTypes } from "@/types/formInputDataTypes";
 import { ToggleSwitch } from "@/components/ToggleSwitch/ToggleSwitch";
 import { NavigationButtons } from "@/containers/NavigationButtons/NavigationButtons";
 import { useRouter } from "next/navigation";
 
 import { PlanOptions } from "@/containers/PlanOptions/PlanOptions";
+import { NavBar } from "@/containers/NavBar/NavBar";
+import { useViewPort } from "@/hooks/customViewPort";
 
 export default function Home() {
-  const { plan, setPlan } = useAppState();
+  const [width] = useViewPort();
+  const breakPoint = 500;
 
-  const {
-    getValues,
-    formState: { errors, isValid },
-  } = useForm<IndividualPlanTypes>({ mode: "onChange" });
-  console.log("plan selected", plan);
   const router = useRouter();
   const handleBackwardClick = () => {
     router.back();
@@ -36,8 +32,10 @@ export default function Home() {
 
   return (
     <Layout>
-        <StyledForm>
-          <StyledFormContainer>
+      <StyledForm>
+        <StyledFormContainer>
+          {width > breakPoint && <NavBar />}
+          <StyledWrapper>
             <StepTitle title={StepTitleTypes.StepTwo} />
             <StyledFieldset>
               <StyledLegend>{StepInfoTypes.StepTwo}</StyledLegend>
@@ -46,15 +44,25 @@ export default function Home() {
                 <ToggleSwitch />
               </StyledToggleSwitchWrapper>
             </StyledFieldset>
-          </StyledFormContainer>
+            {width > breakPoint && (
+              <NavigationButtons
+                back="/"
+                next="/stepThree"
+                handleForwardClick={handleForwardClick}
+                handleBackwardClick={handleBackwardClick}
+              />
+            )}
+          </StyledWrapper>
+        </StyledFormContainer>
+        {width < breakPoint && (
           <NavigationButtons
             back="/"
             next="/stepThree"
             handleForwardClick={handleForwardClick}
             handleBackwardClick={handleBackwardClick}
-            stepIsValidated={isValid}
           />
-        </StyledForm>  
+        )}
+      </StyledForm>
     </Layout>
   );
 }

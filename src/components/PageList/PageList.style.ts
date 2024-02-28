@@ -1,8 +1,26 @@
-import Link from "next/link";
 import styled from "styled-components";
 
 export const StyledList = styled.li`
   list-style-type: none;
+  display: flex;
+  gap: 1rem;
+`;
+export const StyledStepNumber = styled.div`
+  display: none;
+  @media (min-width: ${(props) => props.theme.mediaSize.md}) {
+    display: flex;
+    text-transform: uppercase;
+    flex-direction: column;
+  }
+`;
+
+export const StyledStep = styled.span`
+  color: ${(props) => props.theme.palette.primary.lightBlue};
+`;
+
+export const StyledInfo = styled.span`
+  font-weight: bold;
+  color: ${(props) => props.theme.palette.neutral.white};
 `;
 export const StyledLink = styled.div`
   text-decoration: none;

@@ -1,5 +1,11 @@
 import { FC } from "react";
-import { StyledLink, StyledList } from "./PageList.style";
+import {
+  StyledLink,
+  StyledList,
+  StyledStepNumber,
+  StyledStep,
+  StyledInfo,
+} from "./PageList.style";
 import { usePathname } from "next/navigation";
 
 interface listItemType {
@@ -23,6 +29,10 @@ export const PageList: FC<PageListProps> = ({ listItem }) => {
       >
         {listItem.id}
       </StyledLink>
+      <StyledStepNumber>
+        <StyledStep>step{listItem.id}</StyledStep>
+        <StyledInfo>{listItem.pageTitle}</StyledInfo>
+      </StyledStepNumber>
     </StyledList>
   );
 };

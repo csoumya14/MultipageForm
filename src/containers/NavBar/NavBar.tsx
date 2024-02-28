@@ -25,7 +25,7 @@ export const NavBar: FC<NavBarProps> = () => {
       <LinkItems
         items={linkPageList}
         renderItem={(listItem: linkPageListType) => (
-          <PageList key={listItem.id} listItem={listItem} />
+         <PageList key={listItem.id} listItem={listItem} /> 
         )}
       />
     </StyledMenu>
