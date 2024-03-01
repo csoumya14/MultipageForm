@@ -7,4 +7,8 @@ export const StyledFormContainer = styled.div`
   margin: 1rem 1rem;
   gap: 2rem;
   background-color: ${(props) => props.theme.palette.neutral.white};
+  @media (min-width: ${(props) => props.theme.mediaSize.md}) {
+    flex-direction: row;
+    width: ${(props) => props.theme.card.bigScreen.width};
+  }
 `;

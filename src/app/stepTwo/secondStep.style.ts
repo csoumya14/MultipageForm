@@ -1,9 +1,4 @@
-import { Banner } from "@/components/Banner/Banner";
 import styled from "styled-components";
-
-export const StyledHeading = styled(Banner)`
-  color: ${(props) => props.theme.palette.primary.denim};
-`;
 
 export const StyledFieldset = styled.fieldset`
   display: flex;
@@ -24,6 +19,7 @@ export const StyledForm = styled.form`
   flex-direction: column;
   justify-content: space-between;
   flex-grow: 1;
+  max-height: 100vh;
   width: 100vw;
   @media (min-width: ${(props) => props.theme.mediaSize.md}) {
     align-items: center;
@@ -32,7 +28,7 @@ export const StyledForm = styled.form`
 
 export const StyledLegend = styled.legend`
   color: ${(props) => props.theme.palette.primary.grey};
-  line-height: ${(props) => props.theme.lineHeight.bodyLargeScreen}px;
+  padding-bottom: 1rem;
 `;
 
 export const StyledFormContainer = styled.div`
@@ -45,9 +41,7 @@ export const StyledFormContainer = styled.div`
   background-color: ${(props) => props.theme.palette.neutral.white};
   @media (min-width: ${(props) => props.theme.mediaSize.md}) {
     flex-direction: row;
-    padding: 3rem;
-    gap: 1rem;
-    width: fit-content;
+    width: ${(props) => props.theme.card.bigScreen.width};
   }
 `;
 

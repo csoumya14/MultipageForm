@@ -28,9 +28,11 @@ export const StyledOptionWrapper = styled.div<{ selected: boolean }>`
   border-radius: 6px;
   padding: 1rem;
   align-items: center;
-  gap: 1rem;
+  gap: 0.5rem;
   @media (min-width: ${(props) => props.theme.mediaSize.md}) {
-    padding: 3rem 1rem;
+    padding: 1rem 1rem;
+    width: 7rem;
+    height: 10rem;
     flex-direction: column;
   }
 `;
@@ -44,6 +46,7 @@ export const StyledOptionName = styled.span`
 `;
 export const StyledFreeMessage = styled.span`
   color: ${(props) => props.theme.palette.primary.denim};
+  font-size: 12px;
   @media (min-width: ${(props) => props.theme.mediaSize.md}) {
     text-align: center;
   }

@@ -8,7 +8,6 @@ import {
 
 type NavigationButtonsProps = {
   back: string;
-  next?: string;
   home?: boolean;
   summary?: boolean;
   type?: string;
@@ -25,7 +24,7 @@ export const NavigationButtons: FC<NavigationButtonsProps> = ({
   home,
   summary,
   type = "button",
-  stepIsValidated,
+  stepIsValidated = true,
 }) => {
   return (
     <Wrapper>

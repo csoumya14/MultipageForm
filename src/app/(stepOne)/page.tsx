@@ -18,7 +18,6 @@ import { useRouter } from "next/navigation";
 import { NavBar } from "@/containers/NavBar/NavBar";
 import { useViewPort } from "@/hooks/customViewPort";
 
-const PHONE_NO_REGEX = /^[0-9\- ]{8,14}$/;
 const EMAIL_REGEX =
   /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
@@ -36,7 +35,6 @@ export default function Home() {
     mode: "onChange",
   });
 
-  console.log("name", profile.firstName);
   const router = useRouter();
 
   const handleBackwardClick = () => {
@@ -107,7 +105,6 @@ export default function Home() {
             {width > breakPoint && (
               <NavigationButtons
                 back="/"
-                next="/stepTwo"
                 handleForwardClick={handleForwardClick}
                 handleBackwardClick={handleBackwardClick}
                 home
@@ -119,7 +116,6 @@ export default function Home() {
         {width < breakPoint && (
           <NavigationButtons
             back="/"
-            next="/stepTwo"
             handleForwardClick={handleForwardClick}
             handleBackwardClick={handleBackwardClick}
             home

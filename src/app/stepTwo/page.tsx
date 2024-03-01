@@ -47,7 +47,6 @@ export default function Home() {
             {width > breakPoint && (
               <NavigationButtons
                 back="/"
-                next="/stepThree"
                 handleForwardClick={handleForwardClick}
                 handleBackwardClick={handleBackwardClick}
               />
@@ -57,7 +56,6 @@ export default function Home() {
         {width < breakPoint && (
           <NavigationButtons
             back="/"
-            next="/stepThree"
             handleForwardClick={handleForwardClick}
             handleBackwardClick={handleBackwardClick}
           />

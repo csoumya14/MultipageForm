@@ -36,12 +36,9 @@ export const PlanOptions: FC<PlanOptionsTypes> = ({}) => {
   const { plan, billingFrequency, setSelectedBillingFrequency, setPlan } =
     useAppState();
 
-  const {
-    register,
-    setValue,
-    getValues,
-    watch,
-  } = useForm<IndividualPlanTypes>({ mode: "onChange" });
+  const { register, setValue, getValues, watch } = useForm<IndividualPlanTypes>(
+    { mode: "onChange" }
+  );
 
   const watchPlan = watch("planName", "");
 
@@ -73,6 +70,7 @@ export const PlanOptions: FC<PlanOptionsTypes> = ({}) => {
             />
             <StyledOptionName>{planType}</StyledOptionName>
             <PriceOption
+              plan
               monthlyPrice={planInfo.price.monthly}
               yearlyPrice={planInfo.price.yearly}
             />

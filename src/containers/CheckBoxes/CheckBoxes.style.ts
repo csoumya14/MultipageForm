@@ -24,6 +24,10 @@ export const StyledOptionWrapper = styled.div<{ selected: boolean }>`
   padding: 1rem;
   align-items: center;
   gap: 0.5rem;
+  @media (min-width: ${(props) => props.theme.mediaSize.md}) {
+    padding: 1rem 1rem;
+    
+  }
 `;
 
 export const StyledOptionName = styled.span`

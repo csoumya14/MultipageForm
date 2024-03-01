@@ -11,8 +11,7 @@ export const StyledFormContainer = styled.div`
   background-color: ${(props) => props.theme.palette.neutral.white};
   @media (min-width: ${(props) => props.theme.mediaSize.md}) {
     flex-direction: row;
-    padding: 3rem;
-    width: fit-content;
+    width: ${(props) => props.theme.card.bigScreen.width};
   }
 `;
 

@@ -20,6 +20,11 @@ const theme: DefaultTheme = {
       white: "hsl(0, 0%, 100%)",
     },
   },
+  card: {
+    bigScreen: {
+      width: "50rem",
+    },
+  },
   fontSizes: {
     headingFont: {
       smallScreenSize: "32px",

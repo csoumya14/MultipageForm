@@ -22,6 +22,11 @@ declare module "styled-components" {
         white: string;
       };
     };
+    card: {
+      bigScreen: {
+        width: string;
+      };
+    };
     fontSizes: {
       headingFont: {
         smallScreenSize: string;
