@@ -19,14 +19,17 @@ export const Summary: FC<SummaryTypes> = ({}) => {
   const { plan, billingFrequency, addOn } = useAppState();
   const planName = plan.planName;
 
-  const addOnPriceMonthly = addOn.reduce(
+  console.log("addONsummary",addOn)
+  const addOnWithoutNull = addOn.filter(value => value !== null);
+
+  const addOnPriceMonthly = addOnWithoutNull.reduce(
     (accumulator, currentKey) =>
       addOnOptions[currentKey as keyof addOnInfoType].price.monthly +
       accumulator,
     0
   );
 
-  const addOnPriceYearly = addOn.reduce(
+  const addOnPriceYearly = addOnWithoutNull.reduce(
     (accumulator, currentKey) =>
       addOnOptions[currentKey as keyof addOnInfoType].price.yearly +
       accumulator,
@@ -40,9 +43,7 @@ export const Summary: FC<SummaryTypes> = ({}) => {
       ? addOnPriceMonthly + priceInfo.monthly
       : addOnPriceYearly + priceInfo.yearly;
 
-  console.log(totalPrice);
-
-  console.log("sum", addOnPriceMonthly, addOnPriceYearly);
+ 
   return (
     <ListContainer>
       <ListItemPlan>
@@ -60,7 +61,7 @@ export const Summary: FC<SummaryTypes> = ({}) => {
               }/ yr`}
         </span>
       </ListItemPlan>
-      {addOn.map((item) => (
+      {addOnWithoutNull.map((item) => (
         <ListItemOption key={item}>
           {addOnOptions[item as keyof addOnInfoType].title}{" "}
           <span>

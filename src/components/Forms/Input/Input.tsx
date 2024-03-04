@@ -14,6 +14,7 @@ export type InputProps = {
   checked?: boolean;
   className?: string;
   placeholder?: string;
+  defaultChecked?:boolean;
   onChange?: React.ChangeEventHandler;
   defaultValue?:string;
 };
@@ -26,6 +27,7 @@ export const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
       type,
       placeholder,
       onChange,
+      defaultChecked,
       className,
       value,
       defaultValue,
@@ -40,6 +42,7 @@ export const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
         name={name}
         className={className}
         defaultValue={defaultValue}
+        defaultChecked={defaultChecked}
         value={value}
         onChange={onChange}
         type={type}

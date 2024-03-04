@@ -4,6 +4,7 @@ export const ListContainer = styled.ul`
   display: flex;
   flex-direction: column;
   list-style-type: none;
+  padding: 1rem;
   gap: 1rem;
   background: ${(props) => props.theme.palette.primary.veryLightGrey};
 `;

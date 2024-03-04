@@ -1,5 +1,5 @@
 "use client";
-import { useController, Control } from "react-hook-form";
+import { useController, Control, useForm } from "react-hook-form";
 import {
   StyledInput,
   StyledOptionWrapper,
@@ -20,28 +20,23 @@ interface CheckBoxesTypes {
   watchAddOn: string[];
 }
 
-export const CheckBoxes: FC<CheckBoxesTypes> = ({
-  control,
-  name,
-  watchAddOn,
-}) => {
+export const CheckBoxes: FC<CheckBoxesTypes> = ({ control, name }) => {
   const { addOn, setAddOn } = useAppState();
+  const { watch } = useForm<AddOnTypes>({ mode: "onChange" });
+
+  const watchAddOn = watch("addOn", []);
   const { field } = useController({
     control,
     name,
   });
-
   const isSelected = (name: string) => {
-    return watchAddOn ? watchAddOn.includes(name) : addOn.includes(name);
+    return addOn.includes(name);
   };
-
+  console.log("isSelected", watchAddOn, addOn);
   return (
     <>
       {Object.entries(addOnOptions).map(([optionType, optionInfo], index) => (
-        <StyledOptionWrapper
-          key={optionType}
-          selected={isSelected(optionType)}
-        >
+        <StyledOptionWrapper key={optionType} selected={isSelected(optionType)}>
           <StyledLabel htmlFor={optionType}>
             <StyledInput
               type="checkbox"
@@ -59,6 +54,7 @@ export const CheckBoxes: FC<CheckBoxesTypes> = ({
                 // update local state
                 setAddOn(addOnCopy);
               }}
+              defaultChecked={isSelected(optionType)}
               value={optionType}
               name="planOptions"
             />

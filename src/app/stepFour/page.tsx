@@ -11,7 +11,9 @@ import { StepInfo } from "@/components/StepInfo/StepInfo";
 import { Summary } from "@/containers/Summary/Summary";
 import { useState } from "react";
 import { ThankYouMessage } from "@/containers/ThankYouMessage/ThankYouMessage";
-import { StyledFormContainer } from "./fourthStep.style";
+import { StyledContainer, StyledFormContainer, StyledWrapper } from "./fourthStep.style";
+import { NavBar } from "@/containers/NavBar/NavBar";
+import { useViewPort } from "@/hooks/customViewPort";
 
 export interface addOnOptionsType {
   id: string;
@@ -24,7 +26,8 @@ export interface addOnOptionsType {
 export default function StepFour() {
   const { addOn } = useAppState();
   const [confirm, setConfirm] = useState<boolean>(false);
-
+  const [width] = useViewPort();
+  const breakPoint = 500;
   console.log({ addOn });
 
   const {
@@ -51,24 +54,42 @@ export default function StepFour() {
   return (
     <Layout>
       {confirm ? (
-        <StyledFormContainer>
-          <ThankYouMessage />
-        </StyledFormContainer>
+        <StyledWrapper>
+          <StyledFormContainer>
+            {width > breakPoint && <NavBar />}
+            <ThankYouMessage />
+          </StyledFormContainer>
+        </StyledWrapper>
       ) : (
         <>
-          <StyledFormContainer>
-            <StepTitle title={StepTitleTypes.StepFour} />
-            <StepInfo info={StepInfoTypes.StepFour} />
-            <Summary />
-          </StyledFormContainer>
-          <NavigationButtons
-            back="/stepThree"
-            handleForwardClick={handleForwardClick}
-            handleBackwardClick={handleBackwardClick}
-            handleConfirmClick={handleConfirmClick}
-            summary
-            stepIsValidated={isValid}
-          />{" "}
+          <StyledWrapper>
+            <StyledFormContainer>
+              {width > breakPoint && <NavBar />}
+              <StyledContainer>
+                <StepTitle title={StepTitleTypes.StepFour} />
+                <StepInfo info={StepInfoTypes.StepFour} />
+                <Summary />
+                {width > breakPoint && (
+                  <NavigationButtons
+                    back="/stepThree"
+                    handleForwardClick={handleForwardClick}
+                    handleBackwardClick={handleBackwardClick}
+                    handleConfirmClick={handleConfirmClick}
+                    summary
+                  />
+                )}
+              </StyledContainer>
+            </StyledFormContainer>
+            {width < breakPoint && (
+              <NavigationButtons
+                back="/stepThree"
+                handleForwardClick={handleForwardClick}
+                handleBackwardClick={handleBackwardClick}
+                handleConfirmClick={handleConfirmClick}
+                summary
+              />
+            )}
+          </StyledWrapper>
         </>
       )}
     </Layout>

@@ -25,8 +25,7 @@ export const StyledOptionWrapper = styled.div<{ selected: boolean }>`
   align-items: center;
   gap: 0.5rem;
   @media (min-width: ${(props) => props.theme.mediaSize.md}) {
-    padding: 1rem 1rem;
-    
+    padding: 1rem 1rem; 
   }
 `;
 
