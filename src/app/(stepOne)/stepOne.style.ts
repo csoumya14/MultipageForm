@@ -1,4 +1,5 @@
 import { Input } from "@/components/Forms/Input/Input";
+import { FieldError } from "react-hook-form";
 import styled from "styled-components";
 
 export const StyledFormContainer = styled.div`
@@ -12,15 +13,23 @@ export const StyledFormContainer = styled.div`
   @media (min-width: ${(props) => props.theme.mediaSize.md}) {
     flex-direction: row;
     width: ${(props) => props.theme.card.bigScreen.width};
+    min-height: ${(props) => props.theme.card.bigScreen.height};
   }
 `;
 
-export const StyledInput = styled(Input)`
+export const StyledInput = styled(Input)<{ error?: FieldError }>`
   border: 1px solid;
   border-color: ${(props) => props.theme.palette.primary.borderColor};
   border-radius: 5px;
   padding: 1rem;
   width: 100%;
+  ${({ error }) =>
+    error &&
+    `
+     border: 1px solid;
+     border-color: ${(props: { theme: { palette: { primary: { redErrors: any; }; }; }; }) => props.theme.palette.primary.redErrors};
+      color: #ff6155;
+    `}
 `;
 
 export const StyledFieldset = styled.fieldset`

@@ -23,6 +23,7 @@ const theme: DefaultTheme = {
   card: {
     bigScreen: {
       width: "50rem",
+      height:"30rem"
     },
   },
   fontSizes: {

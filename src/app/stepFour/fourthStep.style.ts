@@ -10,6 +10,7 @@ export const StyledFormContainer = styled.div`
   @media (min-width: ${(props) => props.theme.mediaSize.md}) {
     flex-direction: row;
     width: ${(props) => props.theme.card.bigScreen.width};
+    min-height: ${(props) => props.theme.card.bigScreen.height};
   }
 `;
 

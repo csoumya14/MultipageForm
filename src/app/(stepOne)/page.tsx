@@ -14,9 +14,24 @@ import { useAppState } from "@/context";
 import { Field } from "@/components/Forms/Field/Field";
 import { PersonalInfoTypes } from "@/types/formInputDataTypes";
 import { NavigationButtons } from "@/containers/NavigationButtons/NavigationButtons";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
 import { useRouter } from "next/navigation";
 import { NavBar } from "@/containers/NavBar/NavBar";
 import { useViewPort } from "@/hooks/customViewPort";
+
+const phoneRegExp =
+  /^$| ^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
+
+const validationSchema = yup.object({
+  firstName: yup.string().required("First name is required"),
+
+  email: yup
+    .string()
+    .required("Email is required")
+    .email("Valid email required"),
+  phoneNumber: yup.string().required("Phone number is required"),
+});
 
 const EMAIL_REGEX =
   /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -33,6 +48,7 @@ export default function Home() {
     formState: { errors, isValid },
   } = useForm<PersonalInfoTypes>({
     mode: "onChange",
+    resolver: yupResolver(validationSchema),
   });
 
   const router = useRouter();
@@ -58,43 +74,34 @@ export default function Home() {
               <StyledLegend>{StepInfoTypes.StepOne}</StyledLegend>
               <Field id="name" label="Name" error={errors.firstName}>
                 <StyledInput
-                  {...register("firstName", {
-                    required: { value: true, message: "Name is required" },
-                    maxLength: {
-                      value: 20,
-                      message: "min length should be 20",
-                    },
-                  })}
+                  error={errors.firstName}
+                  {...register("firstName")}
                   type="name"
                   placeholder="e.g.Stephen King"
                   id="name"
                   defaultValue={profile.firstName}
                 />
               </Field>
+
               <Field id="email" label="Email Address" error={errors.email}>
                 <StyledInput
-                  {...register("email", {
-                    required: { value: true, message: "Email is required" },
-                    pattern: { value: EMAIL_REGEX, message: "incorrect email" },
-                  })}
+                  {...register("email")}
                   type="email"
+                  error={errors.email}
                   placeholder="e.g.stephenking@lorem.com"
                   id="email"
                   defaultValue={profile.email}
                 />
               </Field>
+
               <Field
                 id="phoneNumber"
                 label="Phone Number"
                 error={errors.phoneNumber}
               >
                 <StyledInput
-                  {...register("phoneNumber", {
-                    required: {
-                      value: true,
-                      message: "Phone number is required",
-                    },
-                  })}
+                  {...register("phoneNumber")}
+                  error={errors.phoneNumber}
                   type="tel"
                   placeholder="e.g. +1234567890"
                   id="phoneNumber"

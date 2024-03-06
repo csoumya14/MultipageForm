@@ -25,6 +25,7 @@ declare module "styled-components" {
     card: {
       bigScreen: {
         width: string;
+        height:string;
       };
     };
     fontSizes: {

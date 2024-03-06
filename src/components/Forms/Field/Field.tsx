@@ -1,6 +1,6 @@
 import React, { FC, ReactNode } from "react";
 import { FieldError, FieldErrorsImpl, Merge } from "react-hook-form";
-import { StyledLabel, StyledFieldWrapper } from "./Field.style";
+import { StyledLabel, StyledFieldWrapper, ErrorMessage } from "./Field.style";
 
 interface FieldProps {
   children?: ReactNode;
@@ -12,11 +12,9 @@ interface FieldProps {
 export const Field: FC<FieldProps> = ({ children, label, error, id }) => {
   return (
     <StyledFieldWrapper>
-      <StyledLabel htmlFor={id} className="form-label">
-        {label}
-      </StyledLabel>
+      <StyledLabel htmlFor={id}>{label}</StyledLabel>
       {children}
-      {error && <small className="error">{error.message?.toString()}</small>}
+      {error && <ErrorMessage>{error.message?.toString()}</ErrorMessage>}
     </StyledFieldWrapper>
   );
 };
