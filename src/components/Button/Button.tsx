@@ -26,7 +26,7 @@ export const Button: FC<ButtonProps> = ({
       form={form}
       className={className}
       onClick={onClick}
-      color={color}
+      color={disabled ? "secondary" : "primary"}
       disabled={disabled}
     >
       {children}

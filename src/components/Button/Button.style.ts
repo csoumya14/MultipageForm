@@ -14,5 +14,6 @@ const COLOR = {
 
 export const Container = styled.button<ButtonProps>`
   border-radius: 5px;
+  cursor:pointer;
   ${(props) => props.color && COLOR[props.color]}
 `;
