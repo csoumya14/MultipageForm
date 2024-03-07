@@ -32,12 +32,14 @@ export const iconList = [
   },
 ];
 
+
+
 export const PlanOptions: FC<PlanOptionsTypes> = ({}) => {
-  const { plan, billingFrequency, setSelectedBillingFrequency, setPlan } =
+  const { plan, billingFrequency, setPlan } =
     useAppState();
 
   const { register, setValue, getValues, watch } = useForm<IndividualPlanTypes>(
-    { mode: "onChange" }
+    { mode: "onChange"}
   );
 
   const watchPlan = watch("planName", "");

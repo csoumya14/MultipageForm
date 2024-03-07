@@ -13,7 +13,6 @@ import { StepTitle } from "@/components/StepTitle/StepTitle";
 import { ToggleSwitch } from "@/components/ToggleSwitch/ToggleSwitch";
 import { NavigationButtons } from "@/containers/NavigationButtons/NavigationButtons";
 import { useRouter } from "next/navigation";
-
 import { PlanOptions } from "@/containers/PlanOptions/PlanOptions";
 import { NavBar } from "@/containers/NavBar/NavBar";
 import { useViewPort } from "@/hooks/customViewPort";

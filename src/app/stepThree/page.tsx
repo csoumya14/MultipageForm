@@ -8,14 +8,18 @@ import {
   StyledLegend,
   StyledFormContainer,
   StyledWrapper,
+  ErrorMessage,
 } from "./thirdStep.style";
 import { StepTitle } from "@/components/StepTitle/StepTitle";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
 import { AddOnTypes } from "@/types/formInputDataTypes";
 import { NavigationButtons } from "@/containers/NavigationButtons/NavigationButtons";
 import { useRouter } from "next/navigation";
 import { CheckBoxes } from "@/containers/CheckBoxes/CheckBoxes";
 import { useViewPort } from "@/hooks/customViewPort";
 import { NavBar } from "@/containers/NavBar/NavBar";
+import { useAppState } from "@/context";
 
 export interface addOnOptionsType {
   id: string;
@@ -28,10 +32,15 @@ export interface addOnOptionsType {
 export default function StepThree() {
   const [width] = useViewPort();
   const breakPoint = 500;
+  const { addOn } = useAppState();
+  const addOnLength = addOn.length;
 
-  const { control, watch } = useForm<AddOnTypes>({ mode: "onChange" });
-
-  const watchAddOn = watch("addOn", []);
+  const {
+    control,
+    formState: { errors },
+  } = useForm<AddOnTypes>({
+    mode: "onChange",
+  });
 
   const router = useRouter();
   const handleBackwardClick = () => {
@@ -53,12 +62,16 @@ export default function StepThree() {
               <CheckBoxes
                 name="addOn"
                 control={control}
-                watchAddOn={watchAddOn}
+                error={errors.addOn && errors.addOn[0]}
               />
+              {addOnLength === 0 && (
+                <ErrorMessage>Please select an add on</ErrorMessage>
+              )}
             </StyledFieldset>
             {width > breakPoint && (
               <NavigationButtons
                 back="/"
+                stepIsValidated={addOnLength !== 0}
                 handleForwardClick={handleForwardClick}
                 handleBackwardClick={handleBackwardClick}
               />
@@ -70,6 +83,7 @@ export default function StepThree() {
             back="/"
             handleForwardClick={handleForwardClick}
             handleBackwardClick={handleBackwardClick}
+            stepIsValidated={addOnLength !== 0}
           />
         )}
       </StyledForm>

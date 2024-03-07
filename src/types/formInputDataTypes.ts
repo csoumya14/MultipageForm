@@ -26,10 +26,8 @@ export interface PlanTypes {
 }
 
 export interface AddOnTypes {
-  addOn: string[];
+  addOn: string[] |null;
 }
-
-
 
 export interface FormContextDataTypes {
   data: formInputDataTypes;

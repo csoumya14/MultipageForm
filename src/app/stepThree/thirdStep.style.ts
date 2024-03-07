@@ -45,3 +45,9 @@ export const StyledWrapper = styled.div`
   flex-direction: column;
   gap: 1rem;
 `;
+
+export const ErrorMessage = styled.small`
+  color: ${(props) => props.theme.palette.primary.redErrors};
+  align-self: flex-start;
+  width: 50%;
+`;

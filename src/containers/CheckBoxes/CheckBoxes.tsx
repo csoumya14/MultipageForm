@@ -1,5 +1,12 @@
 "use client";
-import { useController, Control, useForm } from "react-hook-form";
+import {
+  useController,
+  Control,
+  useForm,
+  FieldError,
+  FieldErrorsImpl,
+  Merge,
+} from "react-hook-form";
 import {
   StyledInput,
   StyledOptionWrapper,
@@ -7,24 +14,23 @@ import {
   StyledOptionName,
   Wrapper,
 } from "./CheckBoxes.style";
-
+import * as yup from "yup";
 import { useAppState } from "@/context";
 import { FC } from "react";
 import { AddOnTypes } from "@/types/formInputDataTypes";
 import addOnOptions from "../../data/addOnInfo.json";
 import { PriceOption } from "../../components/PriceOption/PriceOption";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 interface CheckBoxesTypes {
   name: "addOn" | `addOn.${number}`;
-  control?: Control<AddOnTypes>;
-  watchAddOn: string[];
+  control: Control<AddOnTypes>;
+  error?: Merge<FieldError, (FieldError | undefined)[]> | undefined;
 }
 
 export const CheckBoxes: FC<CheckBoxesTypes> = ({ control, name }) => {
   const { addOn, setAddOn } = useAppState();
-  const { watch } = useForm<AddOnTypes>({ mode: "onChange" });
 
-  const watchAddOn = watch("addOn", []);
   const { field } = useController({
     control,
     name,
@@ -32,7 +38,7 @@ export const CheckBoxes: FC<CheckBoxesTypes> = ({ control, name }) => {
   const isSelected = (name: string) => {
     return addOn.includes(name);
   };
-  console.log("isSelected", watchAddOn, addOn);
+
   return (
     <>
       {Object.entries(addOnOptions).map(([optionType, optionInfo], index) => (
@@ -41,6 +47,7 @@ export const CheckBoxes: FC<CheckBoxesTypes> = ({ control, name }) => {
             <StyledInput
               type="checkbox"
               id={optionType}
+              name={name}
               onChange={(e: any) => {
                 const addOnCopy = [...addOn];
                 // update checkbox value
@@ -52,12 +59,12 @@ export const CheckBoxes: FC<CheckBoxesTypes> = ({ control, name }) => {
                 field.onChange(addOnCopy);
 
                 // update local state
-                setAddOn(addOnCopy);
+                setAddOn(addOnCopy.filter((val) => val !== null));
               }}
               defaultChecked={isSelected(optionType)}
               value={optionType}
-              name="planOptions"
             />
+
             <Wrapper>
               <StyledOptionName>{optionInfo.title}</StyledOptionName>
               <PriceOption
